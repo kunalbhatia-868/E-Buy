@@ -10,7 +10,7 @@ class Product(models.Model):
     title=models.CharField(max_length=256)
     slug=models.SlugField(blank=True,null=True)
     description=models.TextField()
-    image=models.ImageField()
+    image=models.ImageField(blank=True,null=True)
     status=models.CharField(max_length=3,choices=StatusChoices.choices,default=StatusChoices.AVAILABLE)
     published_date=models.DateField(auto_now_add=True)
 
