@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import Product
+from .models import (
+    Product,
+    Order
+)
 # Register your models here.
 
 class ProductAdmin(admin.ModelAdmin):
@@ -9,5 +12,12 @@ class ProductAdmin(admin.ModelAdmin):
     class Meta:
         model=Product
 
+class OrderAdmin(admin.ModelAdmin):
+    list_display=['user','product']
+    search_fields=['user','product']
+    class Meta:
+        model=Order
 
+
+admin.site.register(Order,OrderAdmin)
 admin.site.register(Product,ProductAdmin)
