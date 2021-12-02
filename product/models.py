@@ -17,11 +17,12 @@ class Product(models.Model):
     image=models.ImageField(blank=True,null=True)
     status=models.CharField(max_length=3,choices=StatusChoices.choices,default=StatusChoices.AVAILABLE)
     published_date=models.DateTimeField(auto_now_add=True)
+    price=models.IntegerField(default=0)
 
     def __str__(self):
         return self.title[:50]
 
-class Order(models.Model):
+class ProductOrder(models.Model):
     user=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
     product=models.ForeignKey(Product,on_delete=models.CASCADE)
     quantity=models.IntegerField(default=1)
@@ -29,3 +30,13 @@ class Order(models.Model):
 
     def __str__(self):
         return self.product.title                
+
+class Order(models.Model):
+    user=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
+    products=models.ManyToManyField(ProductOrder)
+    ordered_date=models.DateTimeField(auto_now_add=True)
+    delivered=models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.username 
+     
