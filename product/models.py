@@ -13,7 +13,7 @@ class Product(models.Model):
     description=models.TextField()
     image=models.ImageField(blank=True,null=True)
     status=models.CharField(max_length=3,choices=StatusChoices.choices,default=StatusChoices.AVAILABLE)
-    published_date=models.DateField(auto_now_add=True)
+    published_date=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title[:50]

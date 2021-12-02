@@ -5,7 +5,7 @@ from .models import Product
 class ProductAdmin(admin.ModelAdmin):
     list_display=['title','status']
     list_filter=['status']
-    search_field=['title']
+    search_fields=['title']
     class Meta:
         model=Product
 

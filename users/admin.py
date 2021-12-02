@@ -6,13 +6,13 @@ from .models import UserProfile
 
 class UserProfileAdmin(UserAdmin):
 
-    list_display = ['email', 'is_staff', 'is_active']
+    list_display = ['username','email', 'is_staff', 'is_active']
     list_filter = ['is_staff', 'is_active']
     search_fields = ['email']
     ordering = ['email']
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
-        ('Permissions', {'fields': ('is_staff', 'is_active')}),
+        (None, {'fields': ('username','email', 'password')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active','is_superuser')}),
     )
     add_fieldsets = (
         (None, {
