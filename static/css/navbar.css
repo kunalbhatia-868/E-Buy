@@ -1,0 +1,31 @@
+.navbar-nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-left: 10px;
+	margin-right: 10px;
+	flex-wrap: nowrap;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+		rgba(0, 0, 0, 0.22) 0px 10px 10px;
+	height: 70px;
+}
+
+.navbar-div {
+	font-size: 30px;
+	font-weight: 500;
+	margin-left: 20px;
+	width: 50%;
+}
+
+.navbar-ul {
+	display: contents;
+}
+
+.navbar-li {
+	list-style-type: none;
+	font-size: 15px;
+	font-family: cursive;
+	font-weight: 600;
+	padding: 15px;
+}
