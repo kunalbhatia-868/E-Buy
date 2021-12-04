@@ -1,7 +1,6 @@
 from django.db import models
 import uuid
 
-from django.db.models.base import Model
 from users.models import UserProfile
 # Create your models here.
 class Product(models.Model):
@@ -28,6 +27,10 @@ class ProductOrder(models.Model):
     quantity=models.IntegerField(default=1)
     ordered=models.BooleanField(default=False)
 
+    class Meta:
+        verbose_name = 'Ordered Product'
+        verbose_name_plural='Ordered Products' 
+
     def __str__(self):
         return self.product.title                
 
@@ -36,7 +39,19 @@ class Order(models.Model):
     products=models.ManyToManyField(ProductOrder)
     ordered_date=models.DateTimeField(auto_now_add=True)
     delivered=models.BooleanField(default=False)
+    address=models.ForeignKey('Address',on_delete=models.SET_NULL,blank=True,null=True)
+
 
     def __str__(self):
         return self.user.username 
      
+class Address(models.Model):
+    user=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
+    apartment_number=models.CharField(max_length=200)
+    street_address=models.CharField(max_length=300)
+    state=models.CharField(max_length=200)
+    country=models.CharField(max_length=200)
+    pincode=models.IntegerField()    
+
+    class Meta:
+        verbose_name_plural='Addresses' 
