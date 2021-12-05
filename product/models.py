@@ -1,13 +1,13 @@
 from django.db import models
 import uuid
-
+from django.utils.translation import gettext_lazy as _
 from users.models import UserProfile
 # Create your models here.
 class Product(models.Model):
     
     class StatusChoices(models.TextChoices):
-        AVAILABLE="SA","Stock Available"
-        OUTOFSTOCK="NSA","No Stock Available"
+        AVAILABLE="SA",_("Stock Available")
+        OUTOFSTOCK="NSA",_("No Stock Available")
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title=models.CharField(max_length=256)

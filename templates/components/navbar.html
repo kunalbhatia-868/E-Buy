@@ -7,16 +7,19 @@
     </div class="navbar-div">
     <ul class="navbar-ul">
         <li class="navbar-li">
-            <a href="#">Link1</a>
+            <a href="#">Categories</a>
         </li>
-        <li class="navbar-li">
-            <a href="#">Link2</a>
+        {% if user.is_authenticated %}
+            <li class="navbar-li">
+            <a href={% url 'home'%}>Logout</a>
         </li>
-        <li class="navbar-li">
-            <a href="#">Link3</a>
-        </li>
-        <li class="navbar-li">
-            <a href="#">Link4</a>
-        </li>
+        {% else %}
+            <li class="navbar-li">
+                <a href={% url 'home'%}>Login</a>
+            </li>
+            <li class="navbar-li">
+                <a href={% url 'home'%}>Signup</a>
+            </li>
+        {% endif %}
     </ul>
 </nav class="navbar-nav">

@@ -6,31 +6,30 @@
 {% endblock %}
 
 {% block content %}
-    {% include "components/navbar.html" %}
     <main class="page-content">
+        <section class="hero-section">
+           <img class="hero-section" src={% static 'images/hero-section.jpg' %} alt="">
+        </section>
         <h1>Latest Collection</h1>
         <section class="product-card-set">
             {% for product in product_list %}
             <div class="product-card">
-                <a href="#">
+                <a href={% url 'detail' product.slug %}>
                     <div class="product-tumb">
                         <img src={% static 'images/sample_product.jpg' %} alt=""/>
                     </div>
-                    <div class="product-details">
-                        <span class="product-catagory">{{product.status}}</span>
-                        <h4><a href="">{{product.title}}</a></h4>
-                        {% if product.description %}
-                            <p>{{product.description}}</p>                    
-                        {% endif %}
-                        <div class="product-bottom-details">
-                            <div class="product-price">${{product.price}}</div>
-                            <div class="product-links">
-                                <a href=""><i class="fa fa-heart"></i></a>
-                                <a href=""><i class="fa fa-shopping-cart"></i></a>
-                            </div>
+                </a>
+                <div class="product-details">
+                    <span class="product-status"><i class="fa fa-circle"></i>  {{product.get_status_display}}</span>
+                    <h4 class="product-title"><a href={% url 'detail' product.slug %}>{{product.title}}</a></h4>
+                    <div class="product-bottom-details">
+                        <div class="product-price">${{product.price}}</div>
+                        <div class="product-links">
+                            <a href=""><i class="fa fa-heart"></i></a>
+                            <a href=""><i class="fa fa-shopping-cart"></i></a>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
             {% endfor %}
         </section>
