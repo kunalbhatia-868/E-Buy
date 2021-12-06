@@ -11,6 +11,7 @@ class HomeView(ListView):
     template_name="product/home.html"
     paginate_by=10
     context_object_name='product_list'
+    ordering=['-published_date']
 
     def get_queryset(self):
         return super().get_queryset()

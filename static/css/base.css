@@ -1,28 +1,6 @@
 * {
 	box-sizing: border-box;
 	scroll-behavior: smooth;
-	background-color: #191919;
-}
-
-* a,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span {
-	background-image: linear-gradient(
-		to right bottom,
-		#b88746,
-		#caa25b,
-		#dbbd72,
-		#ecd98b,
-		#fdf5a6
-	);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
 }
 
 body,

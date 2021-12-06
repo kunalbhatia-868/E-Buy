@@ -7,10 +7,7 @@
 
 {% block content %}
     <main class="page-content">
-        <section class="hero-section">
-           <img class="hero-section" src={% static 'images/hero-section.jpg' %} alt="">
-        </section>
-        <h1>Latest Collection</h1>
+        <h1 class="card-title">Latest Collection</h1>
         <section class="product-card-set">
             {% for product in product_list %}
             <div class="product-card">

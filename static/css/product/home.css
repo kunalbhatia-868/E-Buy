@@ -82,10 +82,6 @@
 	font-style: italic;
 	font-family: monospace;
 }
-.hero-section {
-	width: 100%;
-	margin-bottom: 10%;
-}
 
 .product-details {
 	margin: 20px;
@@ -93,4 +89,7 @@
 
 .fa-circle {
 	display: contents;
+}
+.card-title {
+	text-align: center;
 }
