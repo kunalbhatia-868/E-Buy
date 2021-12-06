@@ -4,7 +4,8 @@ from .models import (
     Address,
     Product,
     ProductOrder,
-    Order
+    Order,
+    WishlistProduct
 )
 # Register your models here.
 
@@ -31,9 +32,14 @@ class AddressAdmin(admin.ModelAdmin):
     list_display=['user','state','country']
     class Meta:
         model=Address
-        
+
+class WishlistProductAdmin(admin.ModelAdmin):
+    list_display=['user','product']
+    class Meta:
+        model=WishlistProduct         
 
 admin.site.register(ProductOrder,ProductOrderAdmin)
 admin.site.register(Order,OrderAdmin)
 admin.site.register(Product,ProductAdmin)
 admin.site.register(Address,AddressAdmin)
+admin.site.register(WishlistProduct,WishlistProductAdmin)

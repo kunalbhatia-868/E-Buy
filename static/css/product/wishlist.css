@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700");
-.product-card-set {
+.wishlist-product-card-set {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: space-around;
 }
 
-.product-card {
+.wishlist-product-card {
 	width: 300px;
 	position: relative;
 	box-shadow: 0 2px 7px #dfdfdf;
@@ -17,36 +17,36 @@
 	margin-bottom: 5%;
 }
 
-.product-tumb {
+.wishlist-product-tumb {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.product-tumb img {
+.wishlist-product-tumb img {
 	max-width: 100%;
 	max-height: 100%;
 	border-radius: 20px;
 }
 
-.product-bottom-details {
+.wishlist-product-bottom-details {
 	overflow: hidden;
 	border-top: 0 0.5px 5px #dfdfdf;
 	padding-top: 20px;
 	padding-left: 20px;
 }
 
-.product-bottom-details div {
+.wishlist-product-bottom-details div {
 	float: left;
 	width: 50%;
 }
 
-.product-price {
+.wishlist-product-price {
 	font-size: 18px;
 	font-weight: 600;
 }
 
-.product-price small {
+.wishlist-product-price small {
 	font-size: 80%;
 	font-weight: 400;
 	text-decoration: line-through;
@@ -54,11 +54,11 @@
 	margin-right: 5px;
 }
 
-.product-links {
+.wishlist-product-links {
 	text-align: right;
 }
 
-.product-links a {
+.wishlist-product-links a {
 	display: inline-block;
 	margin-left: 5px;
 	color: #e1e1e1;
@@ -66,23 +66,23 @@
 	font-size: 17px;
 }
 
-.product-links a:hover {
+.wishlist-product-links a:hover {
 	color: #fbb72c;
 }
 
-.product-title {
+.wishlist-product-title {
 	font-size: 1.5rem;
 	font-style: oblique;
 	font-family: unset;
 	font-weight: 400;
 	text-transform: capitalize;
 }
-.product-status {
+.wishlist-product-status {
 	font-style: italic;
 	font-family: monospace;
 }
 
-.product-details {
+.wishlist-product-details {
 	margin: 20px;
 }
 
