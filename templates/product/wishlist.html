@@ -11,18 +11,17 @@
         <section class="wishlist-product-card-set">
             {% for wishlist_product in wishlist_products %}
                 <div class="wishlist-product-card">
-                <a href={% url 'detail' wishlist_product.product.slug %}>
+                <a href={% url 'detail' wishlist_product.slug %}>
                     <div class="wishlist-product-tumb">
                         <img src={% static 'images/sample_product.jpg' %} alt=""/>
                     </div>
                 </a>
                 <div class="wishlist-product-details">
-                    <span class="wishlist-product-status"><i class="fa fa-circle"></i>  {{wishlist_product.product.get_status_display}}</span>
-                    <h4 class="wishlist-product-title"><a href={% url 'detail' wishlist_product.product.slug %}>{{wishlist_product.product.title}}</a></h4>
+                    <span class="wishlist-product-status"><i class="fa fa-circle"></i>  {{wishlist_product.get_status_display}}</span>
+                    <h4 class="wishlist-product-title"><a href={% url 'detail' wishlist_product.slug %}>{{wishlist_product.title}}</a></h4>
                     <div class="wishlist-product-bottom-details">
-                        <div class="wishlist-product-price">${{wishlist_product.product.price}}</div>
+                        <div class="wishlist-product-price">${{wishlist_product.price}}</div>
                         <div class="wishlist-product-links">
-                            <a href=""><i class="fa fa-heart"></i></a>
                             <a href=""><i class="fa fa-shopping-cart"></i></a>
                         </div>
                     </div>

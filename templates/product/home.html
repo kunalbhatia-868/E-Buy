@@ -22,8 +22,12 @@
                     <div class="product-bottom-details">
                         <div class="product-price">${{product.price}}</div>
                         <div class="product-links">
-                            <a href=""><i class="fa fa-heart"></i></a>
-                            <a href=""><i class="fa fa-shopping-cart"></i></a>
+                            <a id="wishlist-button" href={% url 'add_to_wishlist' product.id %}>
+                                <i class="fa fa-heart"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -31,4 +35,5 @@
             {% endfor %}
         </section>
     </main>
+
 {% endblock %}

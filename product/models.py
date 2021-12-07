@@ -18,6 +18,7 @@ class Product(models.Model):
     status=models.CharField(max_length=3,choices=StatusChoices.choices,default=StatusChoices.AVAILABLE)
     published_date=models.DateTimeField(auto_now_add=True)
     price=models.IntegerField(default=0)
+    wishlist_users=models.ManyToManyField(UserProfile,related_name="wishlist_products")
 
     def __str__(self):
         return self.title[:50]
@@ -57,9 +58,9 @@ class Address(models.Model):
     class Meta:
         verbose_name_plural='Addresses' 
 
-class WishlistProduct(models.Model):
-    user=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
-    product=models.ForeignKey(Product,on_delete=models.CASCADE)
+# class WishlistProduct(models.Model):
+#     user=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
+#     product=models.ForeignKey(Product,on_delete=models.CASCADE)
     
-    def __str__(self):
-        return self.product.title        
+#     def __str__(self):
+#         return self.product.title        

@@ -1,9 +1,10 @@
 from django.db import models
-from django.shortcuts import render
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-
-from product.models import Product,WishlistProduct
+from django.urls import reverse
+from product.models import Product
 # Create your views here.
 
 
@@ -19,6 +20,7 @@ class HomeView(ListView):
 
     def get_context_data(self, **kwargs):
         data=super().get_context_data(**kwargs)
+        data['wishlisted_products']=self.request.user.wishlist_products.all()
         return data
 
 
@@ -31,14 +33,20 @@ class ProductDetailView(DetailView):
         data=super().get_context_data(**kwargs)
         return data
 
-class WishListView(ListView):
-    model=WishlistProduct
-    template_name="product/wishlist.html"
+
+def addToWishlist(request,pk):
+    product=get_object_or_404(Product,id=pk)
+    product.wishlist_users.add(request.user)
+    return HttpResponseRedirect(reverse('home'))
+
+
+class WishlistListView(ListView):
+    model=Product
+    template_name='product/wishlist.html'
     context_object_name='wishlist_products'
 
     def get_queryset(self):
-        return WishlistProduct.objects.filter(user=self.request.user)
+        return self.request.user.wishlist_products.all()
 
     def get_context_data(self, **kwargs):
-        data=super().get_context_data(**kwargs)
-        return data
+        return super().get_context_data(**kwargs)    
