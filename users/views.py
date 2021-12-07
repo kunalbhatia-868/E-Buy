@@ -30,7 +30,7 @@ def logoutview(request):
         return redirect('login')
     else:
         logout(request)
-        return redirect('home')
+        return redirect('login')
 
 
 def loginview(request):
