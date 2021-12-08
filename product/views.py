@@ -20,7 +20,15 @@ class HomeView(ListView):
 
     def get_context_data(self, **kwargs):
         data=super().get_context_data(**kwargs)
-        data['wishlisted_products']=self.request.user.wishlist_products.all()
+        i=0
+        for product in data['product_list']:
+            qs=product.wishlist_users.filter(id=self.request.user.id)
+            if qs.exists():
+                data['product_list'][i].is_wishlisted=True
+            else:
+                data['product_list'][i].is_wishlisted=False
+            i+=1
+               
         return data
 
 
@@ -36,7 +44,10 @@ class ProductDetailView(DetailView):
 
 def addToWishlist(request,pk):
     product=get_object_or_404(Product,id=pk)
-    product.wishlist_users.add(request.user)
+    if product.wishlist_users.filter(id=request.user.id).exists():
+        product.wishlist_users.remove(request.user)
+    else:
+        product.wishlist_users.add(request.user)
     return HttpResponseRedirect(reverse('home'))
 
 

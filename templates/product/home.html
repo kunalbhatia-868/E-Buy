@@ -10,28 +10,32 @@
         <h1 class="card-title">Latest Collection</h1>
         <section class="product-card-set">
             {% for product in product_list %}
-            <div class="product-card">
-                <a href={% url 'detail' product.slug %}>
-                    <div class="product-tumb">
-                        <img src={% static 'images/sample_product.jpg' %} alt=""/>
-                    </div>
-                </a>
-                <div class="product-details">
-                    <span class="product-status"><i class="fa fa-circle"></i>  {{product.get_status_display}}</span>
-                    <h4 class="product-title"><a href={% url 'detail' product.slug %}>{{product.title}}</a></h4>
-                    <div class="product-bottom-details">
-                        <div class="product-price">${{product.price}}</div>
-                        <div class="product-links">
-                            <a id="wishlist-button" href={% url 'add_to_wishlist' product.id %}>
-                                <i class="fa fa-heart"></i>
-                            </a>
-                            <a href="">
-                                <i class="fa fa-shopping-cart"></i>
-                            </a>
+                <div class="product-card">
+                    <a href={% url 'detail' product.slug %}>
+                        <div class="product-tumb">
+                            <img src={% static 'images/sample_product.jpg' %} alt=""/>
+                        </div>
+                    </a>
+                    <div class="product-details">
+                        <span class="product-status"><i class="fa fa-circle"></i>  {{product.get_status_display}}</span>
+                        <h4 class="product-title"><a href={% url 'detail' product.slug %}>{{product.title}}</a></h4>
+                        <div class="product-bottom-details">
+                            <div class="product-price">${{product.price}}</div>
+                            <div class="product-links">
+                                <a id="wishlist-button" href={% url 'add_to_wishlist' product.id %}>
+                                    {% if product.is_wishlisted %}
+                                        <i class="fa fa-heart yellow-wishlisted"></i>
+                                    {% else %}
+                                        <i class="fa fa-heart"></i>
+                                    {% endif %}
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
         </section>
     </main>
