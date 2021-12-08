@@ -22,7 +22,13 @@
                     <div class="wishlist-product-bottom-details">
                         <div class="wishlist-product-price">${{wishlist_product.price}}</div>
                         <div class="wishlist-product-links">
-                            <a href=""><i class="fa fa-shopping-cart"></i></a>
+                            <a href={% url 'add_to_cart' wishlist_product.id %}>
+                                {% if wishlist_product.is_in_cart %}
+                                    <i class="fa fa-shopping-cart yellow-wishlisted"></i>
+                                {% else %}
+                                    <i class="fa fa-shopping-cart"></i>
+                                {% endif %}
+                            </a>
                         </div>
                     </div>
                 </div>

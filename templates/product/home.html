@@ -29,8 +29,13 @@
                                         <i class="fa fa-heart"></i>
                                     {% endif %}
                                 </a>
-                                <a href="">
-                                    <i class="fa fa-shopping-cart"></i>
+                                <a href={% url 'add_to_cart' product.id %}>
+                                    {% if product.is_in_cart %}
+                                        <i class="fa fa-shopping-cart yellow-wishlisted"></i>
+                                    {% else %}
+                                        <i class="fa fa-shopping-cart"></i>
+                                        
+                                    {% endif %}
                                 </a>
                             </div>
                         </div>

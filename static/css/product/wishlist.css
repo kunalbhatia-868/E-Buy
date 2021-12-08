@@ -92,3 +92,6 @@
 .card-title {
 	text-align: center;
 }
+i.fa.fa-shopping-cart.yellow-wishlisted {
+	color: #fbb72c !important;
+}

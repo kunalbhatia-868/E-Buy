@@ -28,7 +28,16 @@ class HomeView(ListView):
             else:
                 data['product_list'][i].is_wishlisted=False
             i+=1
-               
+
+        i=0
+        for product in data['product_list']:
+            qs=ProductOrder.objects.filter(user=self.request.user).filter(product=product)
+            if qs.exists():
+                data['product_list'][i].is_in_cart=True
+            else:
+                data['product_list'][i].is_in_cart=False
+            i+=1
+                  
         return data
 
 
@@ -57,7 +66,16 @@ class WishlistListView(ListView):
     context_object_name='wishlist_products'
 
     def get_queryset(self):
-        return self.request.user.wishlist_products.all()
+        data=self.request.user.wishlist_products.all()
+        i=0
+        for product in data:
+            qs=ProductOrder.objects.filter(user=self.request.user).filter(product=product)
+            if qs.exists():
+                data[i].is_in_cart=True
+            else:
+                data[i].is_in_cart=False
+            i+=1
+        return data
 
     def get_context_data(self, **kwargs):
         return super().get_context_data(**kwargs)    
