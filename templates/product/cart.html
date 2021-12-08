@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href={% static 'css/product/cart.css' %}>
+{% endblock %}
+
+
+{% block content %}
+    <h1 class="page-title">Your Cart</h1>
+    <div class="container cart">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantitiy</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in cart_products %}
+                    <tr class="cart-row">
+                        <th scope="row">
+                            <img class="cart-product-image" src={% static 'images/sample_product.jpg' %} alt="">
+                            <a href={% url 'detail' product.product.slug %} class="cart-product-title">{{product.product.title}}</a>
+                        </th>
+                        <td>{{product.quantity}}</td>
+                        <td>$ {{product.product.price}}</td>
+                        <td>${{product.get_total}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

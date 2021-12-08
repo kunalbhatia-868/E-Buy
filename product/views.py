@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.urls import reverse
-from product.models import Product
+from product.models import Product, ProductOrder
 # Create your views here.
 
 
@@ -48,7 +48,7 @@ def addToWishlist(request,pk):
         product.wishlist_users.remove(request.user)
     else:
         product.wishlist_users.add(request.user)
-    return HttpResponseRedirect(reverse('home'))
+    return HttpResponseRedirect(reverse('home'))    
 
 
 class WishlistListView(ListView):
@@ -61,3 +61,26 @@ class WishlistListView(ListView):
 
     def get_context_data(self, **kwargs):
         return super().get_context_data(**kwargs)    
+
+class CartListView(ListView):
+    model=ProductOrder
+    template_name='product/cart.html'
+    context_object_name='cart_products'
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(**kwargs)
+        
+
+    def get_queryset(self):
+        return ProductOrder.objects.filter(user=self.request.user)
+
+def addToCart(request,pk,quantity=1):
+    product=get_object_or_404(Product,id=pk)
+    ordered_products=ProductOrder.objects.filter(user=request.user)
+    qs_inCart=ordered_products.filter(product=product)
+    if qs_inCart.exists():
+        qs_inCart.delete()
+    else:
+        ProductOrder.objects.create(user=request.user,product=product,quantity=quantity)    
+
+    return HttpResponseRedirect(reverse('home'))

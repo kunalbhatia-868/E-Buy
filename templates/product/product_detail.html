@@ -16,6 +16,11 @@
             <p class="product-desc">{{product.description}}</p>
             
             <p>${{product.price}}</p>
+            <button  class="btn btn-primary">
+                <a href={% url "add_to_cart" product.id %}>
+                    Add To Cart
+                </a>
+            </button>
         </section>
     </main>
 

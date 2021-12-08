@@ -1,0 +1,14 @@
+.page-title {
+	text-align: center;
+	font-size: 10vh;
+	font-family: serif;
+}
+.cart-product-image {
+	width: 80px;
+}
+.cart-row {
+}
+
+body {
+	background-color: ghostwhite;
+}

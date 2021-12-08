@@ -34,7 +34,10 @@ class ProductOrder(models.Model):
         verbose_name_plural='Ordered Products' 
 
     def __str__(self):
-        return self.product.title                
+        return self.product.title      
+
+    def get_total(self):
+        return self.product.price * self.quantity              
 
 class Order(models.Model):
     user=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
