@@ -5,11 +5,12 @@ from .models import (
     Product,
     ProductOrder,
     Order,
+    Category
 )
 # Register your models here.
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display=['title','status']
+    list_display=['title','category','status']
     list_filter=['status']
     search_fields=['title']
     class Meta:
@@ -32,13 +33,14 @@ class AddressAdmin(admin.ModelAdmin):
     class Meta:
         model=Address
 
-# class WishlistProductAdmin(admin.ModelAdmin):
-#     list_display=['user','product']
-#     class Meta:
-#         model=WishlistProduct         
+class CategoryAdmin(admin.ModelAdmin):
+    list_display=['title']
+    class Meta:
+        model=Category   
+
 
 admin.site.register(ProductOrder,ProductOrderAdmin)
 admin.site.register(Order,OrderAdmin)
 admin.site.register(Product,ProductAdmin)
 admin.site.register(Address,AddressAdmin)
-# admin.site.register(WishlistProduct,WishlistProductAdmin)
+admin.site.register(Category,CategoryAdmin)

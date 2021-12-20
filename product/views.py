@@ -1,14 +1,15 @@
 from django.db import models
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.urls import reverse
 from product.models import Product, ProductOrder
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
-class HomeView(ListView):
+class HomeView(LoginRequiredMixin,ListView):
     model=Product
     template_name="product/home.html"
     paginate_by=10
@@ -41,7 +42,7 @@ class HomeView(ListView):
         return data
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(LoginRequiredMixin,DetailView):
     model=Product
     context_object_name='product'
     template_name="product/product_detail.html"
@@ -60,7 +61,7 @@ def addToWishlist(request,pk):
     return HttpResponseRedirect(reverse('home'))    
 
 
-class WishlistListView(ListView):
+class WishlistListView(LoginRequiredMixin,ListView):
     model=Product
     template_name='product/wishlist.html'
     context_object_name='wishlist_products'
@@ -69,7 +70,7 @@ class WishlistListView(ListView):
         data=self.request.user.wishlist_products.all()
         i=0
         for product in data:
-            qs=ProductOrder.objects.filter(user=self.request.user).filter(product=product)
+            qs=ProductOrder.objects.filter(user=self.request.user,product=product)
             if qs.exists():
                 data[i].is_in_cart=True
             else:
@@ -80,7 +81,7 @@ class WishlistListView(ListView):
     def get_context_data(self, **kwargs):
         return super().get_context_data(**kwargs)    
 
-class CartListView(ListView):
+class CartListView(LoginRequiredMixin,ListView):
     model=ProductOrder
     template_name='product/cart.html'
     context_object_name='cart_products'
