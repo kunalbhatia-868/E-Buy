@@ -16,12 +16,17 @@ class ProductAdmin(admin.ModelAdmin):
     class Meta:
         model=Product
 
+class ProductOrderInline(admin.TabularInline):
+    model=ProductOrder
+
 class ProductOrderAdmin(admin.ModelAdmin):
-    list_display=['user','product','ordered']
+    list_display=['user','product','quantity','ordered']
     search_fields=['user','product']
     class Meta:
         model=ProductOrder
 
+class OrderInline(admin.TabularInline):
+    model=Order
 class OrderAdmin(admin.ModelAdmin):
     list_display=['user','ordered_date']
     search_fields=['user']
@@ -29,12 +34,18 @@ class OrderAdmin(admin.ModelAdmin):
 
 
 class AddressAdmin(admin.ModelAdmin):
-    list_display=['user','state','country']
+    list_display=['user','pincode','state','country']
     class Meta:
         model=Address
 
+
+class ProductInline(admin.TabularInline):
+    model=Product
+    fields=['title','status','price']
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display=['title']
+    inlines=[ProductInline]
     class Meta:
         model=Category   
 
