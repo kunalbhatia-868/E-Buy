@@ -16,6 +16,7 @@
 	position: absolute !important;
 	z-index: 2 !important;
 	margin-right: 4vh;
+	text-align: center;
 }
 .user-name {
 	text-transform: capitalize;
@@ -28,4 +29,18 @@
 	font-weight: 600;
 	font-size: 1.5em;
 	font-family: cursive;
+}
+ul.dropdown-menu {
+	text-align: center;
+}
+a.dropdown-item {
+	display: flex;
+	align-items: baseline;
+	justify-content: start;
+	flex-direction: row;
+}
+p.dropdown-text {
+	margin-left: 15px;
+	font-family: serif;
+	font-weight: 500;
 }

@@ -8,7 +8,7 @@
         <div id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Categories</a>
+                    <a class="nav-link active" aria-current="page" href={% url 'categories' %}>Categories</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
@@ -25,15 +25,43 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% if user.is_authenticated %}
-                            <li><a class="dropdown-item" href={% url 'cart'%}>Cart</a></li>
-                            <li><a class="dropdown-item" href={% url 'wishlist'%}>Wishlist</a></li>
+                            <li>
+                                <a class="dropdown-item" href={% url 'cart'%}>
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> 
+                                    <p class="dropdown-text">Cart</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href={% url 'wishlist'%}>
+                                    <i class="fa fa-heart" aria-hidden="true"></i> 
+                                    <p class="dropdown-text">Wishlist</p>
+
+                                </a>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href={%url 'logout'%}>Logout</a></li>
+                            <li>
+                                <a class="dropdown-item" href={%url 'logout'%}>
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i> 
+                                    <p class="dropdown-text">Logout</p>
+                                </a>
+                        </li>
                         {% else %}
-                            <li><a class="dropdown-item" href={%url 'login'%}>Login</a></li>
-                            <li><a class="dropdown-item" href={%url 'signup'%}>Signup</a></li>
+                            <li>
+                                <a class="dropdown-item" href={%url 'login'%}>
+                                    <i class="fa fa-sign-in" aria-hidden="true"></i> 
+                                    <p class="dropdown-text">Login</p>
+
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href={%url 'signup'%}>
+                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                    <p class="dropdown-text">Signup</p>
+
+                                </a>
+                            </li>
                         {% endif %}
                     </ul>
                 </li>

@@ -6,7 +6,9 @@ from .views import (
     addToCart,
     addToWishlist,
     WishlistListView,
-    CartListView
+    CartListView,
+    CategoriesListView,
+    CategoryProductListView
 );
 
 urlpatterns=[
@@ -14,8 +16,8 @@ urlpatterns=[
     path('products/wishlist/',WishlistListView.as_view(),name="wishlist"),
     path('products/<uuid:pk>/add-to-cart/',addToCart,name="add_to_cart"),
     path('products/cart/',CartListView.as_view(),name='cart'),
+    path('products/categories/',CategoriesListView.as_view(),name="categories"),
+    path('products/categories/<slug:slug>/',CategoryProductListView.as_view(),name="category_products"),
     path('products/<slug:slug>/',ProductDetailView.as_view(),name="detail"),
     path('products/<uuid:pk>/wishlist/',addToWishlist,name="add_to_wishlist"),
-
-
 ]

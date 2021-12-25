@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href={% static 'css/product/categories_list.css' %}>
+{% endblock %}
+
+
+{% block content %}
+    <main>
+        <section class="page-heading">
+            <h1 class="page-title">Categories</h1>
+        </section>
+        <section class="category-list">
+            {% for category in categories %}
+                <a href={% url 'category_products' category.slug %} class="category">
+                    <div class="category_image">                            
+                        <img src="https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" />
+                    </div>
+                    <div class="category_title title-black">
+                        <p>{{category.title}}</p>
+                    </div>                    
+                </a>
+            {% endfor %}
+        </section>
+    </main>
+{% endblock %}

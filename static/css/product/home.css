@@ -4,6 +4,7 @@
 	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: space-around;
+	margin-top: 5%;
 }
 
 .product-card {
@@ -89,8 +90,9 @@
 .fa-circle {
 	display: contents;
 }
-.card-title {
+.page-title {
 	text-align: center;
+	margin-top: 5%;
 }
 i.fa.fa-heart.yellow-wishlisted,
 i.fa.fa-shopping-cart.yellow-wishlisted {

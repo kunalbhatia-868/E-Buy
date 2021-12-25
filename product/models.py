@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 from django.utils.translation import gettext_lazy as _
 from users.models import UserProfile
+from django.utils.text import slugify
 # Create your models here.
 class Product(models.Model):
     
@@ -52,10 +53,16 @@ class Order(models.Model):
         
 class Category(models.Model):
     title=models.CharField(max_length=100)
+    slug=models.SlugField(null=True,blank=True)
 
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural='Categories'
+
+    def save(self,*args,**kwargs):
+        if not self.slug:
+            self.slug=slugify(self.title)
+        return super().save(*args,**kwargs)
 
     def __str__(self):
         return self.title

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href={% static 'css/product/home.css' %}>
+{% endblock %}
+
+{% block content %}
+    <main class="page-content">
+        <h1 class="page-title">{{category.title}}</h1>
+        <section class="product-card-set">
+            {% for product in category_products %}
+            <div class="product-card">
+                <a href={% url 'detail' product.slug %}>
+                    <div class="product-tumb">
+                        <img src={% static 'images/sample_product.jpg' %} alt="" />
+                    </div>
+                </a>
+                <div class="product-details">
+                    <span class="product-status"><i class="fa fa-circle"></i> {{product.get_status_display}}</span>
+                    <h4 class="product-title"><a href={% url 'detail' product.slug %}>{{product.title}}</a></h4>
+                    <div class="product-bottom-details">
+                        <div class="product-price">${{product.price}}</div>
+                        <div class="product-links">
+                            <a id="wishlist-button" href={% url 'add_to_wishlist' product.id %}>
+                                {% if product.is_wishlisted %}
+                                <i class="fa fa-heart yellow-wishlisted"></i>
+                                {% else %}
+                                <i class="fa fa-heart"></i>
+                                {% endif %}
+                            </a>
+                            <a href={% url 'add_to_cart' product.id %}>
+                                {% if product.is_in_cart %}
+                                <i class="fa fa-shopping-cart yellow-wishlisted"></i>
+                                {% else %}
+                                <i class="fa fa-shopping-cart"></i>
+    
+                                {% endif %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+    </main>
+{% endblock %}
