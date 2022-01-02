@@ -44,14 +44,3 @@ class UserProfile(AbstractUser):
     def __str__(self):
         return self.email
 
-
-class SellerManager(models.Manager):
-    def get_queryset(self):
-        return super().get_queryset().filter(type=Types.SELLER)    
-
-class Seller(UserProfile):
-    default_type=Types.SELLER
-
-    objects=SellerManager()
-    class Meta:
-        proxy=True

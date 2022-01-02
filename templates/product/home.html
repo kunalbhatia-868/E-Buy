@@ -7,34 +7,69 @@
 
 {% block content %}
     <main class="page-content">
-        <h1 class="page-title">Latest Collection</h1>
+        <section class="slider">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../../static/images/slider/slider1.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../static/images/slider/slider2.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../static/images/slider/slider3.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../static/images/slider/slider4.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                    
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                    
+                </button>
+            </div>
+        </section>
         <section class="product-card-set">
             {% for product in product_list %}
                 <div class="product-card">
-                    <a href={% url 'detail' product.slug %}>
-                        <div class="product-tumb">
-                            <img src={% static 'images/sample_product.jpg' %} alt=""/>
-                        </div>
-                    </a>
-                    <div class="product-details">
-                        <span class="product-status"><i class="fa fa-circle"></i>  {{product.get_status_display}}</span>
-                        <h4 class="product-title"><a href={% url 'detail' product.slug %}>{{product.title}}</a></h4>
-                        <div class="product-bottom-details">
-                            <div class="product-price">${{product.price}}</div>
-                            <div class="product-links">
+                    <div class="product-card-img">
+                        <a href={% url 'detail' product.slug %}>
+                            <img src=https://rukminim1.flixcart.com/image/880/1056/ktaeqvk0/t-shirt/s/9/q/s-tblwtylhdful-d27-tripr-original-imag6nvahffncmny.jpeg?q=50
+                                alt="" srcset="">
+                        </a>
+                    </div>
+                    <div class="product-card-info">
+                        <p class="product-card-status">
+                            <i class="fa fa-circle" aria-hidden="true"></i>
+                            {{product.get_status_display}}
+                            </i>
+                        </p>
+                        <h3 class="product-card-title">
+                            <a href={% url 'detail' product.slug %}>{{product.title}}</a>
+                        </h3>
+                        <div class="product-card-detail">
+                            <p class="product-card-price">
+                                ${{product.price}}
+                            </p>
+                            <div class="product-card-links">
                                 <a id="wishlist-button" href={% url 'add_to_wishlist' product.id %}>
                                     {% if product.is_wishlisted %}
-                                        <i class="fa fa-heart yellow-wishlisted"></i>
+                                    <i class="fa fa-heart yellow-wishlisted"></i>
                                     {% else %}
-                                        <i class="fa fa-heart"></i>
+                                    <i class="fa fa-heart"></i>
                                     {% endif %}
                                 </a>
-                                <a href={% url 'add_to_cart' product.id %}>
+                                <a id="cart-button" href={% url 'add_to_cart' product.id %}>
                                     {% if product.is_in_cart %}
-                                        <i class="fa fa-shopping-cart yellow-wishlisted"></i>
+                                    <i class="fa fa-shopping-cart yellow-wishlisted"></i>
                                     {% else %}
-                                        <i class="fa fa-shopping-cart"></i>
-                                        
+                                    <i class="fa fa-shopping-cart"></i>
                                     {% endif %}
                                 </a>
                             </div>

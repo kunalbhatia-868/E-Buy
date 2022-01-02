@@ -1,100 +1,70 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700");
+
+.carousel .carousel-item {
+	height: 300px;
+	width: 80%;
+	margin-left: 10%;
+}
+
+.carousel-item img {
+	position: absolute;
+	object-fit: cover;
+	top: 0;
+	min-height: 500px;
+}
+
+.carousel-inner img {
+	margin: auto;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+	width: 25%;
+}
+
 .product-card-set {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: space-around;
 	margin-top: 5%;
+	width: 80%;
+	margin-left: 10%;
 }
 
+.product-card-img img {
+	width: 300px;
+	height: 200px;
+	object-fit: contain;
+}
 .product-card {
 	width: 300px;
-	position: relative;
-	box-shadow: 0 2px 7px #dfdfdf;
-	margin-left: 5%;
-	margin-right: 5%;
-	border-radius: 20px;
-	padding: 1px;
-	margin-bottom: 5%;
+	height: 360px;
 }
-
-.product-tumb {
+.product-card-info {
+	margin-left: 60px;
+	margin-right: 60px;
+	line-height: 1;
+}
+.product-card-title {
+	font-family: sans-serif;
+}
+.product-card-detail {
 	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 	align-items: center;
-	justify-content: center;
 }
-
-.product-tumb img {
-	max-width: 100%;
-	max-height: 100%;
-	border-radius: 20px;
+.product-card-price {
+	font-family: sans-serif;
 }
-
-.product-bottom-details {
-	overflow: hidden;
-	border-top: 0 0.5px 5px #dfdfdf;
-	padding-top: 20px;
-	padding-left: 20px;
-}
-
-.product-bottom-details div {
-	float: left;
-	width: 50%;
-}
-
-.product-price {
-	font-size: 18px;
-	font-weight: 600;
-}
-
-.product-price small {
-	font-size: 80%;
-	font-weight: 400;
-	text-decoration: line-through;
-	display: inline-block;
-	margin-right: 5px;
-}
-
-.product-links {
-	text-align: right;
-}
-
-.product-links a {
-	display: inline-block;
-	margin-left: 5px;
-	color: #e1e1e1;
-	transition: 0.3s;
-	font-size: 17px;
-}
-
-.product-links a:hover {
-	color: #fbb72c;
-}
-
-.product-title {
-	font-size: 1.5rem;
-	font-style: oblique;
-	font-family: unset;
-	font-weight: 400;
-	text-transform: capitalize;
-}
-.product-status {
-	font-style: italic;
-	font-family: monospace;
-}
-
-.product-details {
-	margin: 20px;
-}
-
-.fa-circle {
-	display: contents;
-}
-.page-title {
-	text-align: center;
-	margin-top: 5%;
+.product-card-status {
+	font-size: 0.7rem;
 }
 i.fa.fa-heart.yellow-wishlisted,
 i.fa.fa-shopping-cart.yellow-wishlisted {
 	color: #fbb72c !important;
+}
+.product-card-links a:hover {
+	color: #fbb72c;
 }
