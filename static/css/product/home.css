@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 .carousel .carousel-item {
 	height: 300px;
@@ -42,21 +42,27 @@
 	height: 360px;
 }
 .product-card-info {
-	margin-left: 60px;
-	margin-right: 60px;
+	margin-left: 24%;
+	margin-right: 24%;
 	line-height: 1;
 }
 .product-card-title {
-	font-family: sans-serif;
+	font-family: "Roboto", sans-serif;
+	font-weight: 500;
+	font-size: 1.3rem;
+	text-transform: capitalize;
 }
 .product-card-detail {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	align-items: center;
+	align-items: baseline;
+	flex-wrap: nowrap;
+	font-weight: 500;
+	font-size: 1.1em;
 }
 .product-card-price {
-	font-family: sans-serif;
+	font-family: "Roboto", sans-serif;
 }
 .product-card-status {
 	font-size: 0.7rem;
