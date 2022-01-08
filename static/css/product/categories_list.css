@@ -83,3 +83,38 @@
 	font-style: normal;
 	font-weight: 400;
 }
+
+.page-title-underline {
+	position: relative;
+	margin-bottom: 2rem;
+	margin-top: 2rem;
+}
+.page-title-underline:before {
+	display: block;
+	content: "";
+	width: 12px;
+	height: 12px;
+	background-color: #dfceb9;
+	position: relative;
+	transform: rotate(45deg) translateX(-50%);
+	left: 50%;
+	top: 10px;
+}
+.page-title-underline:after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100%;
+	max-width: 65%;
+	height: 3px;
+	background: linear-gradient(
+		to right,
+		#dfceb9 0%,
+		#dfceb9 45%,
+		rgba(0, 0, 0, 0) 45%,
+		rgba(0, 0, 0, 0) 55%,
+		#dfceb9 55%,
+		#dfceb9 100%
+	);
+}

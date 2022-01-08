@@ -28,7 +28,7 @@ class ProductOrderAdmin(admin.ModelAdmin):
 class OrderInline(admin.TabularInline):
     model=Order
 class OrderAdmin(admin.ModelAdmin):
-    list_display=['user','ordered_date']
+    list_display=['user','ordering_date']
     search_fields=['user']
 
 

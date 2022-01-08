@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+<link rel="stylesheet" href={% static 'css/product/order_create.css' %}>
+{% endblock %}
+
+{% block content %}
+<main class="page-content">
+        <section class="page-heading">
+            <h1 class="page-title">Your Order</h1>
+            <div class="page-title-underline"></div>
+        </section>
+
+
+        <section class="container cart">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">Quantitiy</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in ordered_products %}
+                    <tr class="cart-row">
+                        <th scope="row">
+                            <img class="cart-product-image" src={% static 'images/sample_product.jpg' %} alt="">
+                            <a href={% url 'detail' product.product.slug %}
+                                class="cart-product-title">{{product.product.title}}</a>
+                        </th>
+                        <td>{{product.quantity}}</td>
+                        <td>$ {{product.product.price}}</td>
+                        <td>${{product.total}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section class="cart-details container">
+            <p class="golden">Order Total : $ {{cart_total}}</p>
+        </section>
+        
+        <section class="order_details container">
+            <form action="" method="post" class="form-group">
+                {%csrf_token%}
+                {% for field in form %}
+                {{field | as_crispy_field}}
+                {% endfor %}
+                <button type="submit" class="btn create-order-btn">Create Order</button>
+            </form>
+        </section>
+
+        
+    </main>
+{% endblock %}

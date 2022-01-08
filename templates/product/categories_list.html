@@ -7,10 +7,11 @@
 
 
 {% block content %}
-    <main>
+    <main class="page-content">
         <section class="page-heading">
             <h1 class="page-title">Categories</h1>
         </section>
+        <div class="page-title-underline"></div>
         <section class="category-list">
             {% for category in categories %}
                 <a href={% url 'category_products' category.slug %} class="category">

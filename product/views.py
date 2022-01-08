@@ -1,13 +1,16 @@
 from django import db
 from django.db import models
+from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
 from django.urls import reverse
-from product.models import Product, ProductOrder,Category
+from product.models import Product, ProductOrder,Category,Order
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from .forms import OrderForm
 # Create your views here.
 
 
@@ -92,8 +95,17 @@ class CartListView(LoginRequiredMixin,ListView):
     context_object_name='cart_products'
 
     def get_context_data(self, **kwargs):
-        return super().get_context_data(**kwargs)
-        
+        data=super().get_context_data(**kwargs)
+        cart_total=0
+        total_items=0
+        for item in data['cart_products']:
+            cart_total+=item.total
+            total_items+=1;
+
+        data['cart_total']=cart_total
+        data['total_items']=total_items
+
+        return data
 
     def get_queryset(self):
         return ProductOrder.objects.filter(user=self.request.user)
@@ -110,6 +122,33 @@ def addToCart(request,pk,quantity=1):
 
     return HttpResponseRedirect(reverse('home'))
 
+class OrderCreateView(LoginRequiredMixin,CreateView):
+    form_class=OrderForm
+    model=Order
+    template_name="product/order_create.html"
+    success_url="/"
+
+    def get_context_data(self, **kwargs):
+        data=super().get_context_data(**kwargs)
+        data['ordered_products']=self.request.user.productorder_set.all()
+
+        total_items=0;
+        cart_total=0;
+
+        for item in data['ordered_products']:
+            total_items+=1
+            cart_total+=item.total
+
+        data['cart_total']=cart_total
+        data['total_items']=total_items    
+        return data
+
+    def form_valid(self, form):
+        form.instance.user=self.request.user
+        form.save()
+        form.instance.products.set(self.request.user.productorder_set.all())
+        form.save()
+        return super().form_valid(form)
 
 class CategoriesListView(ListView):
     model=Category
@@ -148,5 +187,5 @@ class CategoryProductListView(ListView):
                     data['category_products'][i].is_in_cart=False
                 i+=1
         data['category']=Category.objects.get(slug=self.kwargs['slug'])
-        print(data)
         return data
+

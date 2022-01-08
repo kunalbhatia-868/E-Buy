@@ -7,21 +7,32 @@
 
 {% block content %}
     <main class="page-content">
-        <h1 class="page-title">{{category.title}}</h1>
+        <section class="page-heading">
+            <h1 class="page-title">{{category.title}}</h1>
+            <div class="page-title-underline"></div>
+        </section>
         <section class="product-card-set">
             {% for product in category_products %}
             <div class="product-card">
-                <a href={% url 'detail' product.slug %}>
-                    <div class="product-tumb">
-                        <img src={% static 'images/sample_product.jpg' %} alt="" />
-                    </div>
-                </a>
-                <div class="product-details">
-                    <span class="product-status"><i class="fa fa-circle"></i> {{product.get_status_display}}</span>
-                    <h4 class="product-title"><a href={% url 'detail' product.slug %}>{{product.title}}</a></h4>
-                    <div class="product-bottom-details">
-                        <div class="product-price">${{product.price}}</div>
-                        <div class="product-links">
+                <div class="product-card-img">
+                    <a href={% url 'detail' product.slug %}>
+                        <img src={% static 'images/sample_product.jpg' %} alt="">
+                    </a>
+                </div>
+                <div class="product-card-info">
+                    <p class="product-card-status">
+                        <i class="fa fa-circle" aria-hidden="true"></i>
+                        {{product.get_status_display}}
+                        </i>
+                    </p>
+                    <h3 class="product-card-title">
+                        <a href={% url 'detail' product.slug %}>{{product.title}}</a>
+                    </h3>
+                    <div class="product-card-detail">
+                        <p class="product-card-price">
+                            $ {{product.price}}
+                        </p>
+                        <div class="product-card-links">
                             <a id="wishlist-button" href={% url 'add_to_wishlist' product.id %}>
                                 {% if product.is_wishlisted %}
                                 <i class="fa fa-heart yellow-wishlisted"></i>
@@ -29,12 +40,11 @@
                                 <i class="fa fa-heart"></i>
                                 {% endif %}
                             </a>
-                            <a href={% url 'add_to_cart' product.id %}>
+                            <a id="cart-button" href={% url 'add_to_cart' product.id %}>
                                 {% if product.is_in_cart %}
                                 <i class="fa fa-shopping-cart yellow-wishlisted"></i>
                                 {% else %}
                                 <i class="fa fa-shopping-cart"></i>
-    
                                 {% endif %}
                             </a>
                         </div>

@@ -7,26 +7,38 @@
 
 {% block content %}
     <main class="page-content">
-        <h1 class="card-title">WishList</h1>
-        <section class="wishlist-product-card-set">
-            {% for wishlist_product in wishlist_products %}
-                <div class="wishlist-product-card">
-                <a href={% url 'detail' wishlist_product.slug %}>
-                    <div class="wishlist-product-tumb">
-                        <img src={% static 'images/sample_product.jpg' %} alt=""/>
-                    </div>
-                </a>
-                <div class="wishlist-product-details">
-                    <span class="wishlist-product-status"><i class="fa fa-circle"></i>  {{wishlist_product.get_status_display}}</span>
-                    <h4 class="wishlist-product-title"><a href={% url 'detail' wishlist_product.slug %}>{{wishlist_product.title}}</a></h4>
-                    <div class="wishlist-product-bottom-details">
-                        <div class="wishlist-product-price">${{wishlist_product.price}}</div>
-                        <div class="wishlist-product-links">
-                            <a href={% url 'add_to_cart' wishlist_product.id %}>
-                                {% if wishlist_product.is_in_cart %}
-                                    <i class="fa fa-shopping-cart yellow-wishlisted"></i>
+        <div class="page-heading">
+            <h1 class="page-title">WishList</h1>
+            <div class="page-title-underline"></div>
+        </div>
+        <section class="product-card-set">
+            {% for product in wishlist_products %}
+            <div class="product-card">
+                <div class="product-card-img">
+                    <a href={% url 'detail' product.slug %}>
+                        <img src=https://rukminim1.flixcart.com/image/880/1056/ktaeqvk0/t-shirt/s/9/q/s-tblwtylhdful-d27-tripr-original-imag6nvahffncmny.jpeg?q=50
+                            alt="" srcset="">
+                    </a>
+                </div>
+                <div class="product-card-info">
+                    <p class="product-card-status">
+                        <i class="fa fa-circle" aria-hidden="true"></i>
+                        {{product.get_status_display}}
+                        </i>
+                    </p>
+                    <h3 class="product-card-title">
+                        <a href={% url 'detail' product.slug %}>{{product.title}}</a>
+                    </h3>
+                    <div class="product-card-detail">
+                        <p class="product-card-price">
+                            $ {{product.price}}
+                        </p>
+                        <div class="product-card-links">
+                            <a id="cart-button" href={% url 'add_to_cart' product.id %}>
+                                {% if product.is_in_cart %}
+                                <i class="fa fa-shopping-cart yellow-wishlisted"></i>
                                 {% else %}
-                                    <i class="fa fa-shopping-cart"></i>
+                                <i class="fa fa-shopping-cart"></i>
                                 {% endif %}
                             </a>
                         </div>

@@ -1,0 +1,149 @@
+.page-title {
+	text-align: center;
+	font-size: 3rem;
+	font-family: serif;
+}
+.cart-product-image {
+	width: 40px;
+}
+
+body {
+	background-color: ghostwhite;
+}
+
+.cart-row td {
+	text-align: center;
+	font-family: "Roboto";
+	font-weight: 600;
+	font-size: 1rem;
+	padding-top: 25px;
+}
+
+.cart-row th {
+	font-family: "Roboto";
+	font-size: 1.2rem;
+	text-transform: capitalize;
+}
+
+thead {
+	text-align: center;
+	text-transform: capitalize;
+	font-family: "Roboto";
+	font-size: 1.3rem;
+}
+
+.page-title-underline {
+	position: relative;
+	margin-bottom: 4rem;
+	margin-top: 0.5rem;
+}
+.page-title-underline:before {
+	display: block;
+	content: "";
+	width: 12px;
+	height: 12px;
+	background-color: #dfceb9;
+	position: relative;
+	transform: rotate(45deg) translateX(-50%);
+	left: 50%;
+	top: 10px;
+}
+
+.page-title-underline:after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100%;
+	max-width: 65%;
+	height: 3px;
+	background: linear-gradient(
+		to right,
+		#dfceb9 0%,
+		#dfceb9 45%,
+		rgba(0, 0, 0, 0) 45%,
+		rgba(0, 0, 0, 0) 55%,
+		#dfceb9 55%,
+		#dfceb9 100%
+	);
+}
+
+.golden {
+	background: #f2eee2;
+	font-weight: bold;
+	padding: 10px;
+}
+.num {
+	text-align: right;
+}
+.values {
+	text-align: end;
+}
+
+section.cart-details.container {
+	display: grid;
+	grid-column-gap: 25%;
+	font-family: "Roboto";
+	font-size: 1.2rem;
+	justify-items: end;
+}
+
+.cart-button {
+	text-align: end;
+	margin-top: 30px;
+	margin-bottom: 10%;
+}
+a.back-to-cart {
+	font-weight: 500;
+	background-color: #fff;
+	color: black;
+	cursor: pointer;
+	border-radius: 2px;
+	height: 32px;
+	padding: 12px 72px;
+	border: 1px solid #dbdbdb;
+	outline: none;
+	line-height: 20px;
+	font-size: 16px;
+	letter-spacing: 0.1px;
+	font-family: "Roboto";
+	text-transform: uppercase;
+	box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+	height: 30px;
+}
+
+button.btn.create-order-btn {
+	font-weight: 500;
+	cursor: pointer;
+	border-radius: 2px;
+	height: 32px;
+	padding: 12px 72px;
+	outline: none;
+	line-height: 20px;
+	font-size: 16px;
+	letter-spacing: 0.1px;
+	font-family: "Roboto";
+	text-transform: uppercase;
+	background: #fb641b;
+	box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+	border: none;
+	color: #fff;
+	margin-left: 30px;
+	margin-top: 20px;
+}
+@media all and (max-width: 1000px) {
+	button.btn.create-order-btn {
+		font-size: 12px;
+		padding: 10px 40px;
+	}
+	a.back-to-home {
+		font-size: 12px;
+		padding: 10px 40px;
+	}
+
+	section.cart-details.container,
+	.cart-row th,
+	.cart-row td {
+		font-size: 1rem;
+	}
+}
