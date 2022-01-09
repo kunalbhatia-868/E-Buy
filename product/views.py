@@ -146,9 +146,27 @@ class OrderCreateView(LoginRequiredMixin,CreateView):
     def form_valid(self, form):
         form.instance.user=self.request.user
         form.save()
-        form.instance.products.set(self.request.user.productorder_set.all())
+        
+        product_order_list=ProductOrder.objects.filter(user=self.request.user).values('product')
+        product_list=Product.objects.filter(id__in=product_order_list)
+        form.instance.products.set(product_list)
         form.save()
+
+        # Also delete all product orders(cart_products) of this user
+        self.request.user.productorder_set.all().delete()
         return super().form_valid(form)
+
+
+class OrderListView(LoginRequiredMixin,ListView):
+    model=Order
+    context_object_name="order_products"
+    ordering=['-ordering_date']
+    template_name="product/order_list.html"
+
+    def get_queryset(self):
+        qs_product_list=super().get_queryset().filter(user=self.request.user,delivered=False).values_list('products')
+        data=Product.objects.filter(id__in=qs_product_list)
+        return data
 
 class CategoriesListView(ListView):
     model=Category

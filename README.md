@@ -1,13 +1,12 @@
 # E-Buy
+
 An E-commerce Application with user login,signup and CRUD functionality for both customers and seller
 
-<img src="images/demo1.PNG" width="800" height="600">
-<img src="images/demo2.PNG" width="800" height="600">
-<img src="images/demo3.PNG" width="800" height="600">
-<img src="images/demo4.PNG" width="800" height="600">
-<img src="images/demo5.PNG" width="800" height="600">
-
-
+<img src="images/demo1.PNG" width="1000" height="400">
+<img src="images/demo2.PNG" width="1000" height="400">
+<img src="images/demo3.PNG" width="1000" height="400">
+<img src="images/demo4.PNG" width="1000" height="400">
+<img src="images/demo5.PNG" width="1000" height="400">
 
 ## Running this project
 
@@ -39,3 +38,4 @@ Now you can run the project with this command
 
 ```
 python manage.py runserver
+```

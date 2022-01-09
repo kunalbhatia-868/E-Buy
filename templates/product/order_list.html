@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href={% static 'css/product/order_list.css' %}>
+{% endblock %}
+
+{% block content %}
+<main class="page-content">
+    <section class="page-heading">
+        <h1 class="page-title">Orders</h1>
+        <div class="page-title-underline"></div>
+    </section>
+    <section class="order_set">
+        {{order_products}}
+    </section>
+</main>    
+{% endblock %}F

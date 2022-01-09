@@ -8,6 +8,16 @@
 
 {% block content %}
 <main class="page-content">
+        
+    {% if total_items == 0 %}
+        <h2> No Items Yet </h2>
+        <div class="cart-button container">
+            <a class="back-to-home" href={% url 'home' %}>
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                continue shopping
+            </a>
+        </div>
+    {% else %}
         <section class="page-heading">
             <h1 class="page-title">Your Order</h1>
             <div class="page-title-underline"></div>
@@ -54,7 +64,7 @@
                 <button type="submit" class="btn create-order-btn">Create Order</button>
             </form>
         </section>
-
+    {% endif %}
         
-    </main>
+</main>
 {% endblock %}
