@@ -103,16 +103,15 @@ p.dropdown-text {
 	min-width: initial;
 	padding: 0.5rem;
 }
-/* 
-** The Header Media Queries **
-** Tweak as per your needs **
-*/
 
 .site-header {
 	position: relative;
 	background-color: #def7ff;
 }
 
+.site-header__start {
+	width: 18%;
+}
 .site-header__wrapper {
 	display: flex;
 	justify-content: space-between;

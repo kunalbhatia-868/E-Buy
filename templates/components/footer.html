@@ -1,0 +1,57 @@
+{% load static%}
+<link rel="stylesheet" href={% static 'css/components/footer.css' %}>
+
+<div class="main-footer widgets-dark typo-light">
+    <div class="container footer-text">
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="widget subscribe no-box">
+                    <h5 class="widget-title">E-Buy<span></span></h5>
+                    <p>An Easy Place to buy and sell your products conveniently without any hassle. </p>
+                </div>
+            </div>
+
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="widget no-box">
+                    <h5 class="widget-title">Quick Links<span></span></h5>
+                    <ul class="thumbnail-widget">
+                        <li>
+                            <div class="thumb-content"><a href={% url 'categories' %}>&nbsp;Categories</a></div>
+                        </li>
+                        <li>
+                            <div class="thumb-content"><a href={% url 'home' %}>&nbsp;Latest Products</a></div>
+                        </li>
+                        <li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="widget no-box">
+                    <h5 class="widget-title">Follow up<span></span></h5>
+                    <a href="#"> <i class="fa fa-facebook"> </i> </a>
+                    <a href="#"> <i class="fa fa-twitter"> </i> </a>
+                    <a href="#"> <i class="fa fa-youtube"> </i> </a>
+                </div>
+            </div>
+            <br>
+            <br>
+
+        </div>
+    </div>
+
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>Copyright Kunal Bhatia © 2021. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        

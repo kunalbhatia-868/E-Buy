@@ -31,18 +31,24 @@
                         <th scope="col">Quantitiy</th>
                         <th scope="col">Price</th>
                         <th scope="col">Total</th>
+                        <th scope="col">Remove</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for product in cart_products %}
-                        <tr class="cart-row">
+                        <tr id={{product.id}} class="cart-row">
                             <th scope="row">
                                 <img class="cart-product-image" src={% static 'images/sample_product.jpg' %} alt="">
                                 <a href={% url 'detail' product.product.slug %} class="cart-product-title">{{product.product.title}}</a>
                             </th>
-                            <td>{{product.quantity}}</td>
+                            <td class="quantity-add-minus">
+                                <a href={% url 'decrease_quantity' product.id %}><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                <h4>{{product.quantity}}</h4>
+                                <a href={% url 'increase_quantity' product.id %}><i class="fa fa-plus" aria-hidden="true"></i></a>
+                            </td>
                             <td>$ {{product.product.price}}</td>
                             <td>${{product.total}}</td>
+                            <td><a href={% url 'add_to_cart' product.product.id %}><i class="fa fa-times" aria-hidden="true"></i></a></td>
                         </tr>
                     {% endfor %}
                 </tbody>

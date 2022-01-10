@@ -139,6 +139,50 @@ a.order-button {
 	section.cart-details.container,
 	.cart-row th,
 	.cart-row td {
-		font-size: 1rem;
+		font-size: 0.9rem;
 	}
+
+	.cart-product-image {
+		width: 80px;
+	}
+
+	a.cart-product-title {
+		font-size: 0.8rem;
+	}
+	td.quantity-add-minus {
+		font-size: 0.8rem;
+	}
+}
+
+@media all and (max-width: 550px) {
+	a.order-button,
+	a.back-to-home {
+		font-size: 12px;
+		padding: 10px 40px;
+	}
+	section.cart-details.container,
+	.cart-row th,
+	.cart-row td {
+		font-size: 0.8rem;
+	}
+
+	.cart-product-image {
+		width: 60px;
+		margin-top: 30px;
+	}
+
+	a.cart-product-title {
+		font-size: 0.8rem;
+	}
+	td.quantity-add-minus {
+		font-size: 0.8rem;
+	}
+}
+
+td.quantity-add-minus {
+	display: flex;
+	flex-direction: row;
+	align-items: baseline;
+	justify-content: space-evenly;
+	padding-bottom: 60px;
 }

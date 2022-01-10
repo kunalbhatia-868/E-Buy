@@ -40,3 +40,105 @@
 		#dfceb9 100%
 	);
 }
+.order-product-image {
+	width: 100px;
+}
+
+body {
+	background-color: ghostwhite;
+}
+
+.order-row td {
+	text-align: center;
+	font-family: "Roboto";
+	font-weight: 600;
+	font-size: 1rem;
+	padding-top: 60px;
+}
+
+.order-row th {
+	font-family: "Roboto";
+	font-size: 1.2rem;
+	text-transform: capitalize;
+}
+
+thead {
+	text-align: center;
+	text-transform: capitalize;
+	font-family: "Roboto";
+	font-size: 1.3rem;
+}
+.golden {
+	background: #f2eee2;
+	font-weight: bold;
+	padding: 10px;
+}
+.num {
+	text-align: right;
+}
+.values {
+	text-align: end;
+}
+
+section.order-details.container {
+	display: grid;
+	grid-column-gap: 25%;
+	grid-template-columns: repeat(2, 1fr);
+	font-family: "Roboto";
+	font-size: 1.2rem;
+}
+
+.order-button {
+	text-align: end;
+	margin-top: 30px;
+	margin-bottom: 10%;
+}
+a.back-to-home {
+	font-weight: 500;
+	background-color: #fff;
+	color: black;
+	cursor: pointer;
+	border-radius: 2px;
+	height: 32px;
+	padding: 12px 72px;
+	border: 1px solid #dbdbdb;
+	outline: none;
+	line-height: 20px;
+	font-size: 16px;
+	letter-spacing: 0.1px;
+	font-family: "Roboto";
+	text-transform: uppercase;
+	box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+	height: 30px;
+}
+
+a.order-button {
+	font-weight: 500;
+	cursor: pointer;
+	border-radius: 2px;
+	height: 32px;
+	padding: 12px 72px;
+	outline: none;
+	line-height: 20px;
+	font-size: 16px;
+	letter-spacing: 0.1px;
+	font-family: "Roboto";
+	text-transform: uppercase;
+	background: #fb641b;
+	box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+	border: none;
+	color: #fff;
+	margin-left: 30px;
+}
+@media all and (max-width: 1000px) {
+	a.order-button,
+	a.back-to-home {
+		font-size: 12px;
+		padding: 10px 40px;
+	}
+	section.order-details.container,
+	.order-row th,
+	.order-row td {
+		font-size: 1rem;
+	}
+}

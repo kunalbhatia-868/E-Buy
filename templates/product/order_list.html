@@ -11,8 +11,31 @@
         <h1 class="page-title">Orders</h1>
         <div class="page-title-underline"></div>
     </section>
-    <section class="order_set">
-        {{order_products}}
+    <section class="order_set container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantitiy</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Delivery Date</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in product_orders %}
+                <tr class="order-row">
+                <th scope="row">
+                    <img class="order-product-image" src={% static 'images/sample_product.jpg' %} alt="">
+                    <a href={% url 'detail' product.product.slug %} class="order-product-title">{{product.product.title}}</a>
+                    </th>
+                    <td>{{product.quantity}}</td>
+                    <td>${{product.total}}</td>
+                    <td>{{delivery_date}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </section>
 </main>    
 {% endblock %}F

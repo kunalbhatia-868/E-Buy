@@ -50,7 +50,7 @@ class Order(models.Model):
         CARD="CARD",_("CREDIT/DEBIT CARD")
 
     user=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
-    products=models.ManyToManyField(Product)
+    products=models.ManyToManyField(ProductOrder)
     ordering_date=models.DateField(default=timezone.now)
     delivery_date=models.DateField(default=datetime.datetime.now().date() + datetime.timedelta(days=4))
     delivered=models.BooleanField(default=False)

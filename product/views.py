@@ -1,8 +1,8 @@
 from django import db
 from django.db import models
 from django.http import HttpResponse
-from django.http.response import HttpResponseRedirect
-from django.shortcuts import get_object_or_404
+from django.http.response import HttpResponseRedirect, JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
@@ -39,7 +39,7 @@ class HomeView(ListView):
 
             i=0
             for product in data['product_list']:
-                qs=ProductOrder.objects.filter(user=self.request.user).filter(product=product)
+                qs=ProductOrder.objects.filter(user=self.request.user).filter(product=product,ordered=False)
                 if qs.exists():
                     data['product_list'][i].is_in_cart=True
                 else:
@@ -78,7 +78,7 @@ class WishlistListView(LoginRequiredMixin,ListView):
         data=self.request.user.wishlist_products.all()
         i=0
         for product in data:
-            qs=ProductOrder.objects.filter(user=self.request.user,product=product)
+            qs=ProductOrder.objects.filter(user=self.request.user,product=product,ordered=False)
             if qs.exists():
                 data[i].is_in_cart=True
             else:
@@ -108,7 +108,7 @@ class CartListView(LoginRequiredMixin,ListView):
         return data
 
     def get_queryset(self):
-        return ProductOrder.objects.filter(user=self.request.user)
+        return ProductOrder.objects.filter(user=self.request.user,ordered=False)
 
 @login_required
 def addToCart(request,pk,quantity=1):
@@ -121,6 +121,20 @@ def addToCart(request,pk,quantity=1):
         ProductOrder.objects.create(user=request.user,product=product,quantity=quantity)    
 
     return HttpResponseRedirect(reverse('home'))
+
+def increaseQuantityProduct(request,pk):
+    cart_product=ProductOrder.objects.get(user=request.user,id=pk,ordered=False)
+    product_quantity=cart_product.quantity
+    cart_product.quantity=product_quantity+1
+    cart_product.save()
+    return redirect("/products/cart/")
+
+def decreaseQuantityProduct(request,pk):
+    cart_product=ProductOrder.objects.get(user=request.user,id=pk,ordered=False)
+    product_quantity=cart_product.quantity
+    cart_product.quantity=product_quantity-1
+    cart_product.save()
+    return redirect("/products/cart/")
 
 class OrderCreateView(LoginRequiredMixin,CreateView):
     form_class=OrderForm
@@ -147,25 +161,28 @@ class OrderCreateView(LoginRequiredMixin,CreateView):
         form.instance.user=self.request.user
         form.save()
         
-        product_order_list=ProductOrder.objects.filter(user=self.request.user).values('product')
-        product_list=Product.objects.filter(id__in=product_order_list)
+        product_list=ProductOrder.objects.filter(user=self.request.user)
         form.instance.products.set(product_list)
         form.save()
 
-        # Also delete all product orders(cart_products) of this user
-        self.request.user.productorder_set.all().delete()
+        # Also update all product orders(cart_products) of this user to ordered to not show them in cart
+        self.request.user.productorder_set.all().update(ordered=True)
         return super().form_valid(form)
 
 
 class OrderListView(LoginRequiredMixin,ListView):
     model=Order
-    context_object_name="order_products"
+    context_object_name="product_orders"
     ordering=['-ordering_date']
     template_name="product/order_list.html"
 
+    def get_context_data(self, **kwargs):
+        data= super().get_context_data(**kwargs)
+        return data
+
     def get_queryset(self):
-        qs_product_list=super().get_queryset().filter(user=self.request.user,delivered=False).values_list('products')
-        data=Product.objects.filter(id__in=qs_product_list)
+        product_orders=super().get_queryset().filter(user=self.request.user,delivered=False).values('products')
+        data=ProductOrder.objects.filter(id__in=product_orders)
         return data
 
 class CategoriesListView(ListView):
