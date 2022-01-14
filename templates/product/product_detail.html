@@ -6,21 +6,30 @@
 {% endblock %}
 
 {% block content %}
-    <main class="product-detail">
-        <section class="product-info">
-            <h3 class="product-title">
-                {{product.title}}
-            </h3>
-            <img class="product-image" src={% static 'images/sample_product.jpg' %} alt="" />
-            <p class="product-status"><i class="fa fa-circle"></i> {{product.get_status_display}}</p>
-            <p class="product-desc">{{product.description}}</p>
-            
-            <p>${{product.price}}</p>
-            <button  class="btn btn-primary">
-                <a href={% url "add_to_cart" product.id %}>
-                    Add To Cart
-                </a>
-            </button>
+    <main class="page-content">
+        <section class="product-details container">    
+            <img class="product-image" src="https://rukminim1.flixcart.com/image/880/1056/ktaeqvk0/t-shirt/s/9/q/s-tblwtylhdful-d27-tripr-original-imag6nvahffncmny.jpeg?q=50" alt="" />
+            <div class="product-info">
+                <h3 class="product-title">
+                    {{product.title}}
+                </h3>
+                <p class="product-status">
+                    <i class="fa fa-circle"></i>
+                    {{product.get_status_display}}
+                </p>
+                <p class="product-desc">
+                    {{product.description}}
+                </p>
+                <p class="product-price">
+                    ${{product.price}}
+                </p>
+                <form action={% url 'add_to_cart' product.id %} method="post">
+                    {% csrf_token %}
+                    <input type="number" name="number" id="number" value=0>
+                    <button class="add-to-cart" %} type="submit">
+                        Add To Cart
+                    </button>
+                </form>
         </section>
     </main>
 

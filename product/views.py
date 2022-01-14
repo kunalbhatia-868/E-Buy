@@ -111,9 +111,10 @@ class CartListView(LoginRequiredMixin,ListView):
         return ProductOrder.objects.filter(user=self.request.user,ordered=False)
 
 @login_required
-def addToCart(request,pk,quantity=1):
+def addToCart(request,pk):
+    quantity=request.POST.get('number') or 1
     product=get_object_or_404(Product,id=pk)
-    ordered_products=ProductOrder.objects.filter(user=request.user)
+    ordered_products=ProductOrder.objects.filter(user=request.user,ordered=False)
     qs_inCart=ordered_products.filter(product=product)
     if qs_inCart.exists():
         qs_inCart.delete()
@@ -144,7 +145,7 @@ class OrderCreateView(LoginRequiredMixin,CreateView):
 
     def get_context_data(self, **kwargs):
         data=super().get_context_data(**kwargs)
-        data['ordered_products']=self.request.user.productorder_set.all()
+        data['ordered_products']=self.request.user.productorder_set.all().filter(ordered=False)
 
         total_items=0;
         cart_total=0;
@@ -161,7 +162,7 @@ class OrderCreateView(LoginRequiredMixin,CreateView):
         form.instance.user=self.request.user
         form.save()
         
-        product_list=ProductOrder.objects.filter(user=self.request.user)
+        product_list=ProductOrder.objects.filter(user=self.request.user,ordered=False)
         form.instance.products.set(product_list)
         form.save()
 
@@ -223,4 +224,3 @@ class CategoryProductListView(ListView):
                 i+=1
         data['category']=Category.objects.get(slug=self.kwargs['slug'])
         return data
-
