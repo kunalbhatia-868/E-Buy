@@ -58,18 +58,18 @@
                                 $ {{product.price}}
                             </p>
                             <div class="product-card-links">
-                                <a id="wishlist-button" href={% url 'add_to_wishlist' product.id %}>
+                                <a id="wishlist-button" href="" hx-patch={% url 'add_to_wishlist' product.id %} hx-swap="#wishlist-sign" hx-headers='{"X-CSRFToken":"{{csrf_token}}"}'>
                                     {% if product.is_wishlisted %}
-                                    <i class="fa fa-heart yellow-wishlisted"></i>
+                                        <i id="wishlist-sign" class="fa fa-heart yellow-wishlisted"></i>
                                     {% else %}
-                                    <i class="fa fa-heart"></i>
+                                        <i id="wishlist-sign" class="fa fa-heart"></i>
                                     {% endif %}
                                 </a>
-                                <a id="cart-button" href={% url 'add_to_cart' product.id %}>
+                                <a id="cart-button" href="" hx-patch={% url 'add_to_cart' product.id %} hx-swap="#cart-sign" hx-headers='{"X-CSRFToken":"{{csrf_token}}"}'>
                                     {% if product.is_in_cart %}
-                                    <i class="fa fa-shopping-cart yellow-wishlisted"></i>
+                                    <i id='cart-sign' class="fa fa-shopping-cart yellow-wishlisted"></i>
                                     {% else %}
-                                    <i class="fa fa-shopping-cart"></i>
+                                    <i id='cart-sign' class="fa fa-shopping-cart"></i>
                                     {% endif %}
                                 </a>
                             </div>

@@ -23,13 +23,16 @@
                 <p class="product-price">
                     ${{product.price}}
                 </p>
-                <form action={% url 'add_to_cart' product.id %} method="post">
+                <form action="" method="post">
                     {% csrf_token %}
                     <input type="number" name="number" id="number" value=0>
-                    <button class="add-to-cart" %} type="submit">
+                    <button class="add-to-cart" type="submit" hx-post={% url 'add_to_cart' product.id %} hx-target="#cart-msg" hx-headers='{"X-CSRFToken":"{{csrf_token}}"}'>
                         Add To Cart
                     </button>
                 </form>
+                <div class="message">
+                    <p id="cart-msg"></p>
+                </div>
         </section>
     </main>
 

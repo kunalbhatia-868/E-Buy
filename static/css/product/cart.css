@@ -187,3 +187,7 @@ td.quantity-add-minus {
 	justify-content: space-evenly;
 	padding-bottom: 60px;
 }
+i.fa {
+	font-size: 1rem;
+	font-weight: lighter;
+}

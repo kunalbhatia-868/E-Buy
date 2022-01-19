@@ -77,3 +77,15 @@ button.submit {
 	color: #fff;
 	margin-bottom: 10px;
 }
+form p:empty {
+	display: none;
+}
+.success {
+	color: green;
+	transition: all ease-in 0.4s;
+}
+
+.error {
+	color: red;
+	transition: all ease-in 0.4s;
+}
