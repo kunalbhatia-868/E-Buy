@@ -5,6 +5,7 @@ from django.utils import timezone
 from users.models import UserProfile
 from django.utils.text import slugify
 import datetime
+from django.db.models import Sum
 # Create your models here.
 class Product(models.Model):
     
@@ -26,6 +27,12 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title[:50]
+
+    @property
+    def rating(self):
+        product_ratings=self.ratings.all()
+        curr_rating=(product_ratings.aggregate(Sum('stars'))['stars__sum']/product_ratings.count())
+        return curr_rating
 
 class ProductOrder(models.Model):
     user=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
@@ -97,3 +104,21 @@ class Address(models.Model):
 
     def __str__(self):
         return self.apartment_number+" "+self.street_address+" "+self.state
+
+class Rating(models.Model):
+    class RatingChoices(models.IntegerChoices):
+        ONE=1
+        TWO=2
+        THREE=3
+        FOUR=4
+        FIVE=5
+
+    user=models.ForeignKey(UserProfile,on_delete=models.CASCADE,related_name="ratings")
+    product=models.ForeignKey(Product,on_delete=models.CASCADE,related_name="ratings")
+    stars=models.IntegerField(choices=RatingChoices.choices)
+
+    def __str__(self):
+        return self.product.title
+
+    class Meta:
+        unique_together=('user','product')

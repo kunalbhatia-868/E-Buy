@@ -5,7 +5,8 @@ from .models import (
     Product,
     ProductOrder,
     Order,
-    Category
+    Category,
+    Rating
 )
 # Register your models here.
 
@@ -50,9 +51,17 @@ class CategoryAdmin(admin.ModelAdmin):
     class Meta:
         model=Category   
 
+class RatingAdmin(admin.ModelAdmin):
+    list_display=['product','user','stars']
+    search_fields=['user','product']
+    
+    class Meta:
+        model=Rating
+
 
 admin.site.register(ProductOrder,ProductOrderAdmin)
 admin.site.register(Order,OrderAdmin)
 admin.site.register(Product,ProductAdmin)
 admin.site.register(Address,AddressAdmin)
 admin.site.register(Category,CategoryAdmin)
+admin.site.register(Rating,RatingAdmin)
