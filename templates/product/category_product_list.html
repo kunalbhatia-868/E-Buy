@@ -41,7 +41,7 @@
                                 <i id="wishlist-sign" class="fa fa-heart"></i>
                                 {% endif %}
                             </a>
-                            <a id="cart-button" href="" hx-patch={% url 'add_to_cart' product.id %} hx-swap="#cart-sign"
+                            <a id="cart-button" href="" hx-patch={% url 'update_cart' product.id %} hx-swap="#cart-sign"
                                 hx-headers='{"X-CSRFToken":"{{csrf_token}}"}'>
                                 {% if product.is_in_cart %}
                                 <i id='cart-sign' class="fa fa-shopping-cart yellow-wishlisted"></i>

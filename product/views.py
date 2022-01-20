@@ -1,12 +1,8 @@
-from django import db
-from django.db import models
-from django.http import HttpResponse
-from django.http.response import HttpResponseRedirect, JsonResponse
-from django.shortcuts import get_object_or_404, redirect, render
+from django.http import HttpResponse,Http404
+from django.shortcuts import get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
-from django.urls import reverse
 from product.models import Product, ProductOrder,Category,Order
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -111,48 +107,53 @@ class CartListView(LoginRequiredMixin,ListView):
     def get_queryset(self):
         return ProductOrder.objects.filter(user=self.request.user,ordered=False)
 
-# @login_required
-# def addToCart(request,pk):
-#     quantity=request.POST.get('number') or 1
-#     product=get_object_or_404(Product,id=pk)
-#     ordered_products=ProductOrder.objects.filter(user=request.user,ordered=False)
-#     qs_inCart=ordered_products.filter(product=product)
-#     if qs_inCart.exists():
-#         qs_inCart.delete()
-#     else:
-#         ProductOrder.objects.create(user=request.user,product=product,quantity=quantity)    
-
-#     return HttpResponseRedirect(reverse('home'))
-
 @login_required
-def addToCart(request,pk):
+def UpdateCart(request,pk):
     if request.method=='POST':
-        quantity=request.POST.get('number')
+        quantity=int(request.POST.get('number'))
+        if (quantity<1):
+            quantity=1
+
         product=get_object_or_404(Product,id=pk)
         ordered_products=ProductOrder.objects.filter(user=request.user,ordered=False)
         is_product_ordered=ordered_products.filter(product=product)
 
         if is_product_ordered.exists():
-            ordered_products.get(product=product).quantity=quantity
-            return HttpResponse("Product is already in Cart. Quantity update")
+            curr_product=ordered_products.get(product=product)
+            curr_product.quantity=quantity
+            curr_product.save()
+            
+            return HttpResponse("Product is already in Cart. Quantity update to "+ str(curr_product.quantity))
         else:
             ProductOrder.objects.create(user=request.user,product=product,quantity=quantity)
             return HttpResponse("Product Added To Cart")
 
-
-    if request.method=='PATCH':    
+    elif request.method=='PATCH':    
         product=get_object_or_404(Product,id=pk)
         ordered_products=ProductOrder.objects.filter(user=request.user,ordered=False)
         is_product_ordered=ordered_products.filter(product=product)
 
         if is_product_ordered.exists():
-            ordered_products.filter(product=product).delete()
+            ordered_products.get(product=product).delete()
             return HttpResponse("<i id='cart-sign' class='fa fa-shopping-cart'></i>")
         else:
             ProductOrder.objects.create(user=request.user,product=product,quantity=1)    
             return HttpResponse("<i id='cart-sign' class='fa fa-shopping-cart yellow-wishlisted'></i>")    
+    else:
+        raise Http404
 
 
+@login_required
+def removeFromCartPage(request,pk):
+    if request.method=='DELETE':
+        product=get_object_or_404(Product,id=pk)
+        ordered_products=ProductOrder.objects.filter(user=request.user,ordered=False)
+        is_product_ordered=ordered_products.filter(product=product)
+        if is_product_ordered.exists():
+            ordered_products.get(product=product).delete()
+            return HttpResponse("")
+    else:
+        raise Http404    
 
 @login_required
 def increaseQuantityProduct(request,pk):

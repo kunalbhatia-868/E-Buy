@@ -10,9 +10,6 @@
     </div>
     <div class="site-header__middle">
         <nav class="nav">
-            <button class="nav__toggle" aria-expanded="false" type="button">
-                
-            </button>
             <ul class="nav__wrapper">
                 <li class="nav__item"><a href="#">Home</a></li>
                 <li class="nav__item"><a href="#">About</a></li>
@@ -61,72 +58,3 @@
         </nav>
     </div>
 </div>
-
-<!-- <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href={% url 'home'%}>E-Buy</a>
-        <div id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href={% url 'categories' %}>Categories</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        {% if user.is_authenticated %}
-                            <span class="user-name">                                                  
-                                {{user.username}}                        
-                            </span>
-                        {% endif %}
-                       <i class="fa fa-bars" aria-hidden="true"></i>
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        {% if user.is_authenticated %}
-                            <li>
-                                <a class="dropdown-item" href={% url 'cart'%}>
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> 
-                                    <p class="dropdown-text">Cart</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href={% url 'wishlist'%}>
-                                    <i class="fa fa-heart" aria-hidden="true"></i> 
-                                    <p class="dropdown-text">Wishlist</p>
-
-                                </a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href={%url 'logout'%}>
-                                    <i class="fa fa-sign-out" aria-hidden="true"></i> 
-                                    <p class="dropdown-text">Logout</p>
-                                </a>
-                        </li>
-                        {% else %}
-                            <li>
-                                <a class="dropdown-item" href={%url 'login'%}>
-                                    <i class="fa fa-sign-in" aria-hidden="true"></i> 
-                                    <p class="dropdown-text">Login</p>
-
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href={%url 'signup'%}>
-                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                    <p class="dropdown-text">Signup</p>
-
-                                </a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </li>
-                
-            </ul>
-        </div>
-    </div>
-</nav> -->

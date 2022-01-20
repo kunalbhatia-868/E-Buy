@@ -16,7 +16,7 @@
             <div class="product-card">
                 <div class="product-card-img">
                     <a href={% url 'detail' product.slug %}>
-                        <img src=https://rukminim1.flixcart.com/image/880/1056/ktaeqvk0/t-shirt/s/9/q/s-tblwtylhdful-d27-tripr-original-imag6nvahffncmny.jpeg?q=50
+                        <img src={% static 'images/sample_product.jpg' %}
                             alt="" srcset="">
                     </a>
                 </div>
@@ -34,7 +34,7 @@
                             $ {{product.price}}
                         </p>
                         <div class="product-card-links">
-                            <a id="cart-button" href="" hx-patch={% url 'add_to_cart' product.id %} hx-swap="#cart-sign"
+                            <a id="cart-button" href="" hx-patch={% url 'update_cart' product.id %} hx-swap="#cart-sign"
                                 hx-headers='{"X-CSRFToken":"{{csrf_token}}"}'>
                                 {% if product.is_in_cart %}
                                 <i id='cart-sign' class="fa fa-shopping-cart yellow-wishlisted"></i>

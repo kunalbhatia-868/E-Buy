@@ -36,7 +36,7 @@
                 </thead>
                 <tbody>
                     {% for product in cart_products %}
-                        <tr id={{product.id}} class="cart-row">
+                        <tr id=row_{{product.id}} class="cart-row">
                             <th scope="row">
                                 <img class="cart-product-image" src={% static 'images/sample_product.jpg' %} alt="">
                                 <a href={% url 'detail' product.product.slug %} class="cart-product-title">{{product.product.title}}</a>
@@ -52,7 +52,12 @@
                             </td>
                             <td>$ {{product.product.price}}</td>
                             <td>${{product.total}}</td>
-                            <td><a href={% url 'add_to_cart' product.product.id %}><i class="fa fa-times" aria-hidden="true"></i></a></td>
+                            <td>
+                                <a href="" hx-delete={% url 'remove_from_cart' product.product.id %} hx-target=#row_{{product.id}}
+                                    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
