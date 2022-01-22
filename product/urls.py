@@ -13,6 +13,7 @@ from .views import (
     increaseQuantityProduct,
     decreaseQuantityProduct,
     removeFromCartPage,
+    get_categories_list
 )
 
 urlpatterns=[
@@ -20,6 +21,7 @@ urlpatterns=[
     path('products/wishlist/',WishlistListView.as_view(),name="wishlist"),
     path('products/cart/',CartListView.as_view(),name='cart'),
     path('products/categories/',CategoriesListView.as_view(),name="categories"),
+    path('products/categories_list/',get_categories_list,name="get_categories"),
     path('products/categories/<slug:slug>/',CategoryProductListView.as_view(),name="category_products"),
     path('products/orders/',OrderListView.as_view(),name="orders"),
     path('products/order/',OrderCreateView.as_view(),name="create_order"),

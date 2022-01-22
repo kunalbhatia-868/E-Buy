@@ -1,14 +1,15 @@
 .carousel .carousel-item {
 	height: 300px;
-	width: 80%;
-	margin-left: 10%;
+	width: 90%;
+	margin-left: 5%;
 }
 
 .carousel-item img {
 	position: absolute;
-	object-fit: cover;
-	top: 0;
-	min-height: 500px;
+	height: 719px;
+	width: 100%;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 .carousel-inner img {

@@ -1,4 +1,5 @@
-from django.http import HttpResponse,Http404
+import json
+from django.http import HttpResponse,Http404, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -228,6 +229,21 @@ class CategoriesListView(ListView):
     context_object_name="categories"
     ordering=['title']
     template_name="product/categories_list.html"
+
+def get_categories_list(request):
+    if request.method=='GET':
+        categories_queryset=Category.objects.all()
+        categories_data=list(categories_queryset.values('title','slug'))
+        data={}
+        for i in range(len(categories_data)):
+            category=categories_data[i]
+            data[i]={'title':category['title'],'slug':category['slug']}
+        
+        return JsonResponse(data)
+        
+    else:
+        return Http404
+
 
 class CategoryProductListView(ListView):
     model=Product
