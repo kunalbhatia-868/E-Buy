@@ -6,7 +6,9 @@ from users.models import UserProfile
 from django.utils.text import slugify
 import datetime
 from django.db.models import Sum
+
 # Create your models here.
+
 class Product(models.Model):
     
     class StatusChoices(models.TextChoices):
@@ -17,6 +19,7 @@ class Product(models.Model):
     title=models.CharField(max_length=256)
     slug=models.SlugField(blank=True,null=True)
     description=models.TextField()
+    company_name=models.CharField(max_length=30)
     image=models.ImageField(blank=True,null=True)
     status=models.CharField(max_length=3,choices=StatusChoices.choices,default=StatusChoices.AVAILABLE)
     published_date=models.DateTimeField(auto_now_add=True)
@@ -33,6 +36,11 @@ class Product(models.Model):
         product_ratings=self.ratings.all()
         curr_rating=(product_ratings.aggregate(Sum('stars'))['stars__sum']/product_ratings.count())
         return curr_rating
+    
+    def save(self,*args,**kwargs):
+        if self.slug==None:
+            self.slug=slugify(self.title)
+        return super().save(*args,**kwargs)
 
 class ProductOrder(models.Model):
     user=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
