@@ -1,11 +1,13 @@
 .product-details {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .product-image {
-	width: 200px;
+	width: 250px;
 	margin: 4rem;
 }
 
@@ -15,15 +17,21 @@
 	text-transform: capitalize;
 }
 
+.product-company {
+	font-size: 2rem;
+	font-weight: 800;
+	text-transform: capitalize;
+	font-family: 'Titillium Web', sans-serif;
+}
 .product-title {
-	font-size: 2.5rem;
-	font-weight: 400;
+	font-size: 1.2rem;
+	font-weight: 200;
 	text-transform: capitalize;
 	font-family: "PT Serif", serif;
-	font-weight: 600;
 }
 .product-info {
 	margin-left: 10%;
+	margin-top: 20px;
 	display: flex;
 	flex-direction: column;
 	align-items: baseline;
