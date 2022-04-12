@@ -5,7 +5,7 @@
 <div class="wrapper site-header__wrapper">
     <div class="site-header__start">
         <a href={% url 'home'%} class="brand">
-            <img src="../../static/images/Logo_project.png" alt="" class="nav-logo">
+            <img src={% static 'images/Logo_project.png' %} alt="" class="nav-logo">
         </a>
     </div>
     <div class="site-header__middle">
@@ -59,7 +59,7 @@
     </div>
 </div>
 <div class="categories-navbar">
-    <nav class="nav categories-nav">
+    <nav class="categories-nav">
         <ul class="categories-list nav__wrapper" id="category_list">
             
         </ul>
@@ -68,25 +68,44 @@
 
 <script>
     //list and link of categories,their slugs
-    fetch('/products/categories_list')
-    .then(response=>response.json())
-    .then(categories=>{
-        let size=0
-        for(category in categories)
-        {
-            size++
-        }
+    // fetch('/products/categories_list')
+    // .then(response=>response.json())
+    // .then(categories=>{
+    //     let size=0
+    //     for(category in categories)
+    //     {
+    //         size++
+    //     }
 
-        let list_element=document.getElementById('category_list')
+    //     let list_element=document.getElementById('category_list')
 
-        for (let i = 0; i < size; i++) {
-            const item=document.createElement("li")
-            const linkitem=document.createElement("a")
-            linkitem.href="/products/categories/"+categories[i]['slug']
-            linkitem.innerHTML=categories[i]['title']
-            item.appendChild(linkitem)
-            list_element.appendChild(item)
-        }
-    })
+    //     for (let i = 0; i < size; i++) {
+    //         const item=document.createElement("li")
+    //         const linkitem=document.createElement("a")
+    //         linkitem.href="/products/categories/"+categories[i]['slug']
+    //         linkitem.innerHTML=categories[i]['title']
+    //         item.appendChild(linkitem)
+    //         list_element.appendChild(item)
+    //     }
+    // })
+        fetch('/products/categories_list')
+                .then(response => response.json())
+                .then(categories => {
+                    let size = 0
+                    for (category in categories) {
+                        size++
+                    }
+
+                    let list_element = document.getElementById('category_list')
+
+                    for (let i = 0; i < size; i++) {
+                        const item = document.createElement("li")
+                        const linkitem = document.createElement("a")
+                        linkitem.href = "/products/categories/" + categories[i]['slug']
+                        item.innerHTML = categories[i]['title']
+                        linkitem.appendChild(item)
+                        list_element.appendChild(linkitem)
+                    }
+                })
 
 </script>

@@ -125,64 +125,32 @@ a.brand {
 	margin-top: 6px;
 }
 .site-header__wrapper {
-	box-shadow: 0 1px 1px 0 rgb(0 0 0 / 16%);
+	box-shadow: 0 2px 1px 0 #424d52;
 }
 .categories-navbar {
-	box-shadow: 0 1px 1px 0 rgb(0 0 0 / 16%);
+	box-shadow: 0 3.5px 1px 0 #424d52;
 	margin-bottom: 5px;
-	max-height: 50px;
-	padding-top: 7px;
 }
 nav.categories-nav {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
 }
 
 .categories-navbar ul li {
-	margin-left: 14px;
-	margin-right: 14px;
-	border: 3px solid #7e9198;
+	border: 2px solid #424d52;
 	font-family: "Roboto";
 	font-weight: 600;
-	font-size: 1.02rem;
-	border-radius: 10px;
-	letter-spacing: 1px;
-}
-@media (max-width: 1200px) {
-	.categories-navbar ul li {
-		margin-left: 4px;
-		margin-right: 4px;
-		font-family: "Roboto";
-		font-weight: 600;
-		font-size: 0.75rem;
-		border-radius: 10px;
-		border: 3px solid #7e9198;
-		letter-spacing: 1px;
-	}
-	.categories-navbar {
-		box-shadow: 0 1px 1px 0 rgb(0 0 0 / 16%);
-		margin-bottom: 5px;
-		max-height: 100px;
-		padding-top: 7px;
-	}
+	font-size: 1.2rem;
+	line-height: 2px;
+	height: 5vh;
+	padding: 1vw;
+	text-align: center;
+	border-radius: 8px;
 }
 
-@media (max-width: 1400px) and (min-width: 1200px) {
-	.categories-navbar ul li {
-		margin-left: 7px;
-		margin-right: 7px;
-		border: 3px solid #7e9198;
-		font-family: "Roboto";
-		font-weight: 600;
-		font-size: 0.75rem;
-		border-radius: 10px;
-		letter-spacing: 1px;
-	}
-	.categories-navbar {
-		box-shadow: 0 1px 1px 0 rgb(0 0 0 / 16%);
-		margin-bottom: 5px;
-		max-height: 80px;
-		padding-top: 10px;
-	}
+.categories-navbar ul {
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	padding-left: 0;
 }
