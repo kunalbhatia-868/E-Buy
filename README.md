@@ -1,6 +1,6 @@
 # E-Buy
 
-An E-commerce Application with user login,signup and CRUD functionality for both customers and seller
+An E-commerce Application with User Login,Signup and CRUD Functionality for both Customers and Seller.
 
 <img src="images/demo1.PNG" width="1000" height="400">
 <img src="images/demo2.PNG" width="1000" height="400">
