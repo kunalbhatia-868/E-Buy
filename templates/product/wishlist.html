@@ -26,9 +26,12 @@
                         {{product.get_status_display}}
                         </i>
                     </p>
-                    <h3 class="product-card-title">
-                        <a href={% url 'detail' product.slug %}>{{product.title}}</a>
+                    <h3 class="product-card-company">
+                        {{product.company_name}}
                     </h3>
+                    <p class="product-card-title">
+                        <a href={% url 'detail' product.slug %}>{{product.title}}</a>
+                    </p>
                     <div class="product-card-detail">
                         <p class="product-card-price">
                             $ {{product.price}}

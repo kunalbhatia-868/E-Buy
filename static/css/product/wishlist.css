@@ -8,25 +8,47 @@
 	width: 80%;
 	margin-left: 10%;
 }
+@media (max-width: 740px) {
+	.product-card-set {
+		width: 100%;
+		margin-left: 0;
+	}
+}
 
 .product-card-img img {
 	width: 300px;
 	height: 200px;
+	padding-left:20%;
+	padding-right:20%;
+	padding-top:15px;
+	padding-bottom:15px;
+	object-fit: contain;
 	object-fit: contain;
 }
 .product-card {
 	width: 300px;
 	height: 360px;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	margin-left:0.5vw;
+	margin-right:0.5vw;
+	margin-bottom: 30px;
+	border-radius: 2%;
 }
 .product-card-info {
 	margin-left: 24%;
 	margin-right: 24%;
 	line-height: 1;
 }
-.product-card-title {
+.product-card-company {
 	font-family: "Roboto", sans-serif;
 	font-weight: 500;
 	font-size: 1.3rem;
+	text-transform: capitalize;
+}
+.product-card-title {
+	font-family: 'Titillium Web', sans-serif;
+	font-weight: 300;
+	font-size: 0.9rem;
 	text-transform: capitalize;
 }
 .product-card-detail {
@@ -35,14 +57,14 @@
 	justify-content: space-between;
 	align-items: baseline;
 	flex-wrap: nowrap;
-	font-weight: 500;
-	font-size: 1.1em;
+	font-weight: 600;
+	font-size: 1em;
 }
 .product-card-price {
 	font-family: "Roboto", sans-serif;
 }
 .product-card-status {
-	font-size: 0.7rem;
+	font-size: 0.6rem;
 }
 i.fa.fa-heart.yellow-wishlisted,
 i.fa.fa-shopping-cart.yellow-wishlisted {

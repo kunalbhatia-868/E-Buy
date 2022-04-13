@@ -18,7 +18,7 @@
                     <th scope="col">Product</th>
                     <th scope="col">Quantitiy</th>
                     <th scope="col">Total</th>
-                    <th scope="col">Delivery Date</th>
+                    <th scope="col">Delivery Days</th>
 
                 </tr>
             </thead>
@@ -31,7 +31,7 @@
                     </th>
                     <td>{{product.quantity}}</td>
                     <td>${{product.total}}</td>
-                    <td>{{delivery_date}}</td>
+                    <td>{{product.product.delivery_days}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
