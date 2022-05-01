@@ -11,7 +11,7 @@ from .forms import OrderForm
 # Create your views here.
 
 
-class HomeView(ListView):
+class HomeView(LoginRequiredMixin,ListView):
     model=Product
     template_name="product/home.html"
     paginate_by=20
@@ -128,7 +128,6 @@ def UpdateCart(request,pk):
         else:
             ProductOrder.objects.create(user=request.user,product=product,quantity=quantity)
             return HttpResponse("Product Added To Cart")
-
     elif request.method=='PATCH':    
         product=get_object_or_404(Product,id=pk)
         ordered_products=ProductOrder.objects.filter(user=request.user,ordered=False)
