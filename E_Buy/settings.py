@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import decouple
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-h!$6yo8qpyb*&&3mjjy1v@6&sobr+ay-w#hs#$sp@gvupt*%dm'
+SECRET_KEY = decouple.config('SECRET_KEY' ,default='')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = decouple.config('DEBUG',cast=bool,default=True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in decouple.config('ALLOWED_HOSTS',default='').split(',')
+]
 
 # Application definition
 
@@ -126,6 +131,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS=[
     BASE_DIR/'static',
 ]
+
+STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
