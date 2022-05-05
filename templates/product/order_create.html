@@ -52,7 +52,7 @@
         </section>
 
         <section class="cart-details container">
-            <p class="golden">Order Total : $ {{cart_total}}</p>
+            <p id="cart-total" class="golden">Order Total : $ {{cart_total}}</p>
         </section>
         
         <section class="order_details container">
@@ -64,20 +64,21 @@
                 <button id="rzp-button1" type="submit" class="btn create-order-btn">Create Order</button>
                 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
                 <script>
+                    var cart_total=100*parseInt(document.getElementById('cart-total').innerHTML.split(" ").pop())
                     var options = {
                         "key": 'rzp_test_0WrjqwxIwCTHjw', // Enter the Key ID generated from the Dashboard
-                        "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                        "amount": `${cart_total}`, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                         "currency": "INR",
                         "name": "E-Buy",
                         "description": "E-Buy cart payment",
-                        "image": "https://example.com/your_logo",
+                        "image": "/static/images/Logo_project.png",
                         "handler": function (response) {
                             //${response.razorpay_payment_id}`;
                             document.forms['order-form'].submit();
                         },
                         "prefill": {
-                            "name": "Gaurav Kumar",
-                            "email": "gaurav.kumar@example.com",
+                            "name": "Kunal Bhatia",
+                            "email": "kunal.bhatia@example.com",
                             "contact": "9999999999"
                         },
                         "notes": {
