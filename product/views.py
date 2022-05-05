@@ -8,6 +8,8 @@ from product.models import Product, ProductOrder,Category,Order
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .forms import OrderForm
+import decouple
+import razorpay
 # Create your views here.
 
 
@@ -179,6 +181,19 @@ class OrderCreateView(LoginRequiredMixin,CreateView):
     model=Order
     template_name="product/order_create.html"
     success_url="/"
+
+    def post(self, request, *args, **kwargs):
+        client = razorpay.Client(auth=(decouple.config('KEY_ID'), decouple.config('KEY_SECRET')))
+        
+        DATA = {
+            "amount": 100,
+            "currency": "INR",
+            'payment_capture':'1',
+        }
+        client.order.create(data=DATA)
+        
+        return super().post(request, *args, **kwargs)
+
 
     def get_context_data(self, **kwargs):
         data=super().get_context_data(**kwargs)

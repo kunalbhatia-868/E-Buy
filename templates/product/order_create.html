@@ -56,15 +56,58 @@
         </section>
         
         <section class="order_details container">
-            <form action="" method="post" class="form-group">
+            <form id="order-form" action="" method="post" class="form-group">
                 {%csrf_token%}
                 {% for field in form %}
                 {{field | as_crispy_field}}
                 {% endfor %}
-                <button type="submit" class="btn create-order-btn">Create Order</button>
+                <button id="rzp-button1" type="submit" class="btn create-order-btn">Create Order</button>
+                <span id="message"></span>
+                <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                <script>
+                    var options = {
+                        "key": 'rzp_test_0WrjqwxIwCTHjw', // Enter the Key ID generated from the Dashboard
+                        "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                        "currency": "INR",
+                        "name": "E-Buy",
+                        "description": "E-Buy cart payment",
+                        "image": "https://example.com/your_logo",
+                        "handler": function (response) {
+                            document.getElementById('message').innerHTML=`\n Your Order Has been Placed \n Order Id: ${response.razorpay_payment_id}`;
+                            document.forms['order-form'].submit();
+                        },
+                        "prefill": {
+                            "name": "Gaurav Kumar",
+                            "email": "gaurav.kumar@example.com",
+                            "contact": "9999999999"
+                        },
+                        "notes": {
+                            "address": "Razorpay Corporate Office"
+                        },
+                        "theme": {
+                            "color": "#3399cc"
+                        }
+                    };
+                    var rzp1 = new Razorpay(options);
+                    rzp1.on('payment.failed', function (response) {
+                        alert(response.error.code);
+                        alert(response.error.description);
+                        alert(response.error.source);
+                        alert(response.error.step);
+                        alert(response.error.reason);
+                        alert(response.error.metadata.order_id);
+                        alert(response.error.metadata.payment_id);
+                    });
+                    document.getElementById('rzp-button1').onclick = function (e) {
+                        rzp1.open();
+                        e.preventDefault();
+                        
+                    }
+                </script>
             </form>
         </section>
     {% endif %}
         
 </main>
 {% endblock %}
+
