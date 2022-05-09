@@ -20,7 +20,7 @@ class Product(models.Model):
     slug=models.SlugField(blank=True,null=True)
     description=models.TextField()
     company_name=models.CharField(max_length=30)
-    image=models.ImageField(blank=True,null=True)
+    image=models.URLField(max_length=300,blank=True,null=True)
     status=models.CharField(max_length=3,choices=StatusChoices.choices,default=StatusChoices.AVAILABLE)
     published_date=models.DateTimeField(auto_now_add=True)
     price=models.IntegerField(default=0)
